@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Basic Example
 //
-//  Created by Jonathan McCaffrey on 2018-08-14.
-//  Copyright © 2018 Jonathan McCaffrey. All rights reserved.
+//  Created by brainCloud Support on 2018-08-14.
+//  Copyright © 2018 brainCloud Support. All rights reserved.
 //
 
 import UIKit
@@ -26,7 +26,7 @@ class LoginScene: UIViewController {
     
     @IBAction func OnLoginClicked(_ sender: Any) {
         
-        AppDelegate.bc.authenticateUniversal(userId.text,
+        AppDelegate._bc.authenticateUniversal(userId.text,
                                              password: password.text,
                                              forceCreate: true,
                                              completionBlock: { (serviceName, serviceOperation, jsonData, cbObject) in

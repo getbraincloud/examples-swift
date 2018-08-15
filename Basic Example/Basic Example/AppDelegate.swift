@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Basic Example
 //
-//  Created by Jonathan McCaffrey on 2018-08-14.
-//  Copyright © 2018 Jonathan McCaffrey. All rights reserved.
+//  Created by brainCloud Support on 2018-08-14.
+//  Copyright © 2018 brainCloud Support. All rights reserved.
 //
 
 import UIKit
@@ -14,17 +14,17 @@ import BrainCloud
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    static var bc: BrainCloudWrapper = BrainCloudWrapper();
+    static var _bc: BrainCloudWrapper = BrainCloudWrapper();
     
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        AppDelegate.bc = BrainCloudWrapper()
-        AppDelegate.bc.getBCClient().enableLogging(true)
+        AppDelegate._bc = BrainCloudWrapper()
+        AppDelegate._bc.getBCClient().enableLogging(true)
         
-        AppDelegate.bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
+        AppDelegate._bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
                                   secretKey: "921d9acc-e286-4b37-91b6-a394f4e6ff4f",
                                   gameId: "12049",
                                   gameVersion: "1.0.0",
