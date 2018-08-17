@@ -2,8 +2,8 @@
 //  Basic_ExampleUITests.swift
 //  Basic ExampleUITests
 //
-//  Created by Jonathan McCaffrey on 2018-08-14.
-//  Copyright © 2018 Jonathan McCaffrey. All rights reserved.
+//  Created by brainCloud Support on 2018-08-14.
+//  Copyright © 2018 brainCloud Support. All rights reserved.
 //
 
 import XCTest
