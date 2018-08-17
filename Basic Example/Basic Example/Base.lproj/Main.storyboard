@@ -144,8 +144,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ep5-wJ-6Is">
                                 <rect key="frame" x="20" y="50" width="374" height="656"/>
                                 <subviews>
-                                    <segmentedControl autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lh3-eM-rpB">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
+                                    <segmentedControl hidden="YES" autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lh3-eM-rpB">
+                                        <rect key="frame" x="0.0" y="-50" width="374" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="rEW-14-L8p"/>
                                         </constraints>
@@ -158,10 +158,10 @@
                                         </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CUQ-oy-Ebs">
-                                        <rect key="frame" x="0.0" y="80" width="374" height="576"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="656"/>
                                         <subviews>
                                             <stackView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cw8-ZU-rRI">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="576"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="656"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ttb-T1-gAZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -276,15 +276,24 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KV0-oP-r5b">
-                                                        <rect key="frame" x="0.0" y="300" width="374" height="276"/>
+                                                        <rect key="frame" x="0.0" y="300" width="374" height="256"/>
                                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created Entities can be viewed on the brainCloud dashboard, under [Monitoring | User Monitoring | User Entities]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNp-b0-iO8">
+                                                        <rect key="frame" x="0.0" y="576" width="374" height="80"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="80" id="vcB-0u-DYR"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ufw-aM-b9Q">
-                                                <rect key="frame" x="0.0" y="-340" width="374" height="210"/>
+                                                <rect key="frame" x="0.0" y="-190" width="374" height="210"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Um3-l7-FJb">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
