@@ -8,8 +8,8 @@ Find our latest releases of our ObjC client library [here](https://github.com/ge
 
 ## Basic Example
 
-This is Swit example demonstrates the following:
+This is Swift example demonstrates the following:
 
 - brainCloud Setup
 - Authentication
-
+- Entities
