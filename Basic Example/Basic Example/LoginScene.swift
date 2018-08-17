@@ -22,6 +22,27 @@ class LoginScene: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    
+    @IBOutlet weak var loginView: UIStackView!
+    @IBOutlet weak var registerView: UIStackView!
+    @IBAction func onMenuChanged(_ sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 0) {
+            loginView.isHidden = false;
+            registerView.isHidden = true;
+        } else if(sender.selectedSegmentIndex == 1) {
+            loginView.isHidden = true;
+            registerView.isHidden = false;
+        } else {
+            AppDelegate._bc.authenticateAnonymous(onAuthenticate,
+                                                  errorCompletionBlock: onAuthenticateFailed,
+                                                  cbObject: nil)
+            
+        }
+    }
+    
+    
+    
     @IBAction func OnLoginClicked(_ sender: Any) {
         
         /*
@@ -41,7 +62,7 @@ class LoginScene: UIViewController {
         
         AppDelegate._bc.authenticateUniversal(userId.text,
                                               password: password.text,
-                                              forceCreate: true,
+                                              forceCreate: false,
                                               completionBlock: onAuthenticate,
                                               errorCompletionBlock: onAuthenticateFailed,
                                               cbObject: nil)
@@ -90,7 +111,6 @@ class LoginScene: UIViewController {
         
         self.performSegue(withIdentifier: "onLogin", sender: nil)
         
-        self.loginError.text = ""
     }
     
     func onAuthenticateFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
