@@ -16,6 +16,11 @@ class LoginScene: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AppDelegate._bc.reconnect(onAuthenticate,
+                                  errorCompletionBlock: onAuthenticateFailed,
+                                  cbObject: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -98,7 +103,7 @@ class LoginScene: UIViewController {
             let isNewUser = data["newUser"] as! String;
             
             if(isNewUser.elementsEqual("true")) {
-                AppDelegate._bc.playerStateService.updateName(self.userId.text,
+                AppDelegate._bc.playerStateService.updateName(self.userId?.text,
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)

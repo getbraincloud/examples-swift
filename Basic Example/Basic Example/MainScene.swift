@@ -87,13 +87,18 @@ class MainScene: UIViewController {
     @IBOutlet weak var pushNotificationMenu: UIStackView!
     
     @IBAction func onChangeMenu(_ sender: UISegmentedControl) {
-        if(sender.state.rawValue == 0) {
-            entityMenu.isHidden = false;
-            pushNotificationMenu.isHidden = true;
-        } else if(sender.state.rawValue == 1) {
-            entityMenu.isHidden = true;
-            pushNotificationMenu.isHidden = false;
+        if(sender.selectedSegmentIndex == 0) {
+            //
+        } else if(sender.selectedSegmentIndex == 1) {
+            AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
+            
+            AppDelegate._bc.getBCClient().authenticationService.clearSavedProfile();
+            AppDelegate._bc.storedAnonymousId = "";
+            AppDelegate._bc.storedProfileId = "";
+            
+            self.performSegue(withIdentifier: "onLogout", sender: nil)
         }
     }
+    
 }
 
