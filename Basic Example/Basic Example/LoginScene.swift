@@ -27,6 +27,7 @@ class LoginScene: UIViewController {
     
     @IBOutlet weak var loginView: UIStackView!
     @IBOutlet weak var registerView: UIStackView!
+    
     @IBAction func onMenuChanged(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 0) {
             loginView.isHidden = false;
@@ -46,7 +47,7 @@ class LoginScene: UIViewController {
      Login
      */
     
-    @IBOutlet weak var lUserId: UITextField!
+    @IBOutlet weak var lEmail: UITextField!
     @IBOutlet weak var lPassword: UITextField!
     
     @IBOutlet weak var lLoginError: UILabel!
@@ -56,11 +57,11 @@ class LoginScene: UIViewController {
         /*
          BRAINCLOUD_INFO
          
-         On our apps login page, we request the user to give an username and password for the UNIVERSIAL_ID and PASSWORD required for authentication.
+         On our apps login page, we request the user to give a email and password for the EMAIL and PASSWORD required for authentication.
          
          After a successful login, the onAuthenticate function will be called
          
-         AppDelegate._bc.authenticateUniversal(UNIVERSIAL_ID,
+         AppDelegate.authenticateEmailPassword(EMAIl,
          password: PASSWORD,
          forceCreate: true,
          completionBlock: onAuthenticate,
@@ -68,7 +69,7 @@ class LoginScene: UIViewController {
          cbObject: nil)
          */
         
-        AppDelegate._bc.authenticateUniversal(lUserId.text,
+        AppDelegate._bc.authenticateEmailPassword(lEmail.text,
                                               password: lPassword.text,
                                               forceCreate: false,
                                               completionBlock: onAuthenticate,
@@ -77,7 +78,7 @@ class LoginScene: UIViewController {
     }
     
     func onAuthenticate(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
-        print("Success \(String(describing: jsonData))")
+        print("\(serviceOperation!) Success \(jsonData!)")
         
         let data = jsonData?.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
@@ -88,7 +89,7 @@ class LoginScene: UIViewController {
             let isNewUser = data["newUser"] as! String;
             
             if(isNewUser.elementsEqual("true")) {
-                AppDelegate._bc.playerStateService.updateName(self.lUserId?.text,
+                AppDelegate._bc.playerStateService.updateName(self.lEmail?.text,
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)
@@ -105,7 +106,7 @@ class LoginScene: UIViewController {
     }
     
     func onAuthenticateFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
-        print("Failure \(String(describing: serviceName))")
+        print("\(serviceOperation!) Failure \(jsonError!)")
         
         /*
          BRAINCLOUD_INFO
@@ -119,7 +120,7 @@ class LoginScene: UIViewController {
             self.lLoginError.text = "Account does not exist. Please register instead."
         } else {
             
-            self.lLoginError.text = "Login Error \(String(describing: reasonCode))"
+            self.lLoginError.text = "\n\(serviceOperation!) Error \(reasonCode!)"
         }
         
         UserDefaults.standard.set(false, forKey: "HasAuthenticated")
@@ -130,13 +131,13 @@ class LoginScene: UIViewController {
      Register
      */
     
-    @IBOutlet weak var rUserId: UITextField!
+    @IBOutlet weak var rEmail: UITextField!
     @IBOutlet weak var rPassword: UITextField!
     @IBOutlet weak var rName: UITextField!
     @IBOutlet weak var rRegisterError: UILabel!
     
     @IBAction func OnRegisterClicked(_ sender: Any) {
-        AppDelegate._bc.authenticateUniversal(rUserId.text,
+        AppDelegate._bc.authenticateEmailPassword(rEmail.text,
                                               password: rPassword.text,
                                               forceCreate: true,
                                               completionBlock: onRegister,
@@ -179,7 +180,6 @@ class LoginScene: UIViewController {
                 /*
                  If they aren't a new user, we are going to logout, and throw an error that they need to login instead
                  */
-                
                 AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
                 
                 rRegisterError.text = "User already exists, please login instead.";

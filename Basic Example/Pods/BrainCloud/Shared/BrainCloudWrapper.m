@@ -296,7 +296,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     
     [[_bcClient authenticationService] authenticateEmailPassword:email
                                                         password:password
-                                                     forceCreate:YES
+                                                     forceCreate:forceCreate
                                                  completionBlock:self.authSuccessCompletionBlock
                                             errorCompletionBlock:self.authErrorCompletionBlock
                                                                              cbObject:aco];

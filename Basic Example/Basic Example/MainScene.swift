@@ -6,8 +6,11 @@
 //  Copyright © 2018 brainCloud Support. All rights reserved.
 
 import UIKit
+import BrainCloud
 
 class MainScene: UIViewController {
+    
+    @IBOutlet weak var deviceTokenLabel: UILabel!
     
     @IBOutlet var test: UIView!
     override func viewDidLoad() {
@@ -16,6 +19,7 @@ class MainScene: UIViewController {
         view.addGestureRecognizer(
             UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
+        deviceTokenLabel.text = AppDelegate.pushToken
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,8 +48,9 @@ class MainScene: UIViewController {
     }
     
     func onCreateEntity(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
-        print("Success \(String(describing: jsonData))")
-        self.entityLog.text = "\nCreateEntity Success \(String(describing: jsonData))"
+        print("\n\(serviceOperation!) Success \(jsonData!)")
+        
+        self.entityLog.text = "\n\(serviceOperation!) Success \(jsonData!)"
         
         let data = jsonData?.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
@@ -63,7 +68,7 @@ class MainScene: UIViewController {
     }
     
     func onCreateEntityFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
-        self.entityLog.text = "\nCreateEntity Failed \(String(describing: jsonError))"
+        self.entityLog.text = "\(serviceOperation!) Failed \(jsonError!)"
         
     }
     
@@ -77,23 +82,28 @@ class MainScene: UIViewController {
     
     func onDeleteEntity(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         
-        self.entityLog.text = "\nDeleteEntity Success \(String(describing: jsonData))"
+        self.entityLog.text = "\(serviceOperation!) Success \(jsonData!)"
         
         self.entityId.text = "";
         self.entityType.text = "";
     }
     
     func onDeleteEntityFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
-        self.entityLog.text = "\nDeleteEntity Failed \(String(describing: jsonError))"
+        self.entityLog.text = "\(serviceOperation!) Failed \(jsonError!)"
+        
     }
     
     @IBOutlet weak var entityMenu: UIStackView!
     @IBOutlet weak var pushNotificationMenu: UIStackView!
     
-    @IBAction func onChangeMenu(_ sender: UISegmentedControl) {
+    @IBAction func OnChangeMenu(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 0) {
-            //
+            entityMenu.isHidden = false;
+            pushNotificationMenu.isHidden = true;
         } else if(sender.selectedSegmentIndex == 1) {
+            entityMenu.isHidden = true;
+            pushNotificationMenu.isHidden = false;
+        } else if(sender.selectedSegmentIndex == 2) {
             AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
             
             AppDelegate._bc.getBCClient().authenticationService.clearSavedProfile();
@@ -107,29 +117,51 @@ class MainScene: UIViewController {
     }
     
     
-    
-    
-    
     /**
         Push Notifications
- 
      */
     
     @IBOutlet weak var deviceToken: UILabel!
     
     @IBAction func OnRegisterPushNotificationsClicked(_ sender: Any) {
-        
-      //  const char * token = "grnuo234gf89vrn2v789h24gf2gmk583490jgn0er";
-        
-       // _bc->getPushNotificationService()->
-         //   registerPushNotificationDeviceToken(Platform::iOS, token, this);
+       
+        deviceTokenLabel.text = AppDelegate.pushToken
+        AppDelegate._bc.pushNotificationService.registerDeviceToken(
+            PlatformObjc.iOS(),
+            deviceToken: AppDelegate.pushToken,
+            completionBlock: OnPushNotificationSuccess,
+            errorCompletionBlock: nil,
+            cbObject: nil)
     }
     
     @IBAction func OnDeregisterPushNotificationsClicked(_ sender: Any) {
+        AppDelegate._bc.pushNotificationService.deregisterAllPushNotificationDeviceTokens(
+            OnPushNotificationSuccess,
+            errorCompletionBlock: nil,
+            cbObject: nil)
     }
     
     @IBAction func OnSendPushNotificationsClicked(_ sender: Any) {
+        AppDelegate._bc.pushNotificationService.sendSimplePushNotification(
+            AppDelegate._bc.storedProfileId,
+            message: "Message_" + String(describing: arc4random_uniform(2000)),
+            completionBlock: OnPushNotificationSuccess,
+            errorCompletionBlock: nil,
+            cbObject: nil);
+    }
     
+    @IBOutlet weak var pushLog: UILabel!
+    
+    func OnPushNotificationSuccess(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
+        
+        self.pushLog.text = "\(serviceOperation!) Success \(jsonData!)"
+        
+    }
+    
+    func OnPushNotificationFailure(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
+        
+        self.pushLog.text = "\(serviceOperation!) Failed \(jsonError!)"
+        
     }
     
 }

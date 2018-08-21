@@ -12,12 +12,12 @@ import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     static var _bc: BrainCloudWrapper = BrainCloudWrapper();
     
-    var deviceTokenString: String?;
+    static var pushToken: String?;
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -62,17 +62,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Enable or disable features based on authorization.
         }
         application.registerForRemoteNotifications()
-        
-        
-        
+        UNUserNotificationCenter.current().delegate = self
         
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        print(deviceTokenString)
+        AppDelegate.pushToken = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(AppDelegate.pushToken ?? "")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.alert, .badge, .sound])
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
