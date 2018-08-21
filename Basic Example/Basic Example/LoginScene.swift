@@ -61,9 +61,9 @@ class LoginScene: UIViewController {
         /*
          BRAINCLOUD_INFO
          
-         // On our apps login page, we request the user to give an username and password for the UNIVERSIAL_ID and PASSWORD required for authentication.
+         On our apps login page, we request the user to give an username and password for the UNIVERSIAL_ID and PASSWORD required for authentication.
          
-         // After a successful authentcation, the onAuthenticate function will be called
+         After a successful login, the onAuthenticate function will be called
          
          AppDelegate._bc.authenticateUniversal(UNIVERSIAL_ID,
             password: PASSWORD,
@@ -97,7 +97,6 @@ class LoginScene: UIViewController {
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)
-                
             }
         } catch let error as NSError {
             print("Failed to load: \(error.localizedDescription)")
@@ -113,6 +112,14 @@ class LoginScene: UIViewController {
     func onAuthenticateFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
         print("Failure \(String(describing: serviceName))")
         
+        /*
+         BRAINCLOUD_INFO
+         
+         The user has failed to login. Perhaps they entered the wrong password, or do not have an internet connection.
+         
+         Display an error to the user, based on the problem that occured
+         */
+        
         if(reasonCode == 40208) {
             self.lLoginError.text = "Account does not exist. Please register instead."
         } else {
@@ -121,15 +128,6 @@ class LoginScene: UIViewController {
         }
         
         UserDefaults.standard.set(false, forKey: "HasAuthenticated")
-        
-        /*
-         BRAINCLOUD_INFO
-         
-         // The user has failed to login. Perhaps they entered the wrong password, or do not have an internet connection.
-         
-         // Display an error to the user, based on the problem that occured
-         */
-        
     }
     
     
@@ -160,17 +158,8 @@ class LoginScene: UIViewController {
         /*
          BRAINCLOUD_INFO
          
-         // After our user logs in, we are going to see if they are a newUser, and if they are, we are going to update their "name" to match their universalId
+         After our user logs in, we are going to see if they are a newUser, and if they are, we are going to update their "name" to match the name they entered on the register screen
          
-         let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: AnyObject]
-         let isNewUser = json["data"]?["newUser"] as! Bool;
-         
-         if(isNewUser) {
-         AppDelegate._bc.playerStateService.updateName(self.userId.text,
-            completionBlock: nil,
-            errorCompletionBlock: nil,
-            cbObject: nil)
-         }
          */
         
         do {
@@ -180,7 +169,7 @@ class LoginScene: UIViewController {
             let isNewUser = data["newUser"] as! String;
             
             if(isNewUser.elementsEqual("true")) {
-                AppDelegate._bc.playerStateService.updateName(self.lUserId?.text,
+                AppDelegate._bc.playerStateService.updateName(self.rName?.text,
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)
@@ -193,7 +182,7 @@ class LoginScene: UIViewController {
                 
             } else {
                 /*
-                 If they aren't a new user, we are going to logout and throw an error that they need to login instead
+                 If they aren't a new user, we are going to logout, and throw an error that they need to login instead
                  */
                 
                 AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
