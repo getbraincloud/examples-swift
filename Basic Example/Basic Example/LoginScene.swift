@@ -9,11 +9,12 @@
 import UIKit
 
 class LoginScene: UIViewController {
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addGestureRecognizer(
+            UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         // If user has already authenticated, so let's reconnect
         if(UserDefaults.standard.bool(forKey: "HasAuthenticated")) {
@@ -23,12 +24,6 @@ class LoginScene: UIViewController {
         }
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
     
     @IBOutlet weak var loginView: UIStackView!
     @IBOutlet weak var registerView: UIStackView!
@@ -66,11 +61,11 @@ class LoginScene: UIViewController {
          After a successful login, the onAuthenticate function will be called
          
          AppDelegate._bc.authenticateUniversal(UNIVERSIAL_ID,
-            password: PASSWORD,
-            forceCreate: true,
-            completionBlock: onAuthenticate,
-            errorCompletionBlock: onAuthenticateFailed,
-            cbObject: nil)
+         password: PASSWORD,
+         forceCreate: true,
+         completionBlock: onAuthenticate,
+         errorCompletionBlock: onAuthenticateFailed,
+         cbObject: nil)
          */
         
         AppDelegate._bc.authenticateUniversal(lUserId.text,

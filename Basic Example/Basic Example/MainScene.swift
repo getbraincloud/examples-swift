@@ -11,7 +11,11 @@ class MainScene: UIViewController {
     
     @IBOutlet var test: UIView!
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
+        view.addGestureRecognizer(
+            UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
     }
     
     override func didReceiveMemoryWarning() {
