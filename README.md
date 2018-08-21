@@ -15,4 +15,4 @@ This is Swift example demonstrates the following:
 - Entities
 - Push Notifications
 
-![Login](screenshots/1.PNG?raw=true "Login")![Entities](screenshots/2.PNG?raw=true "Entities")![PushNotifications](screenshots/3.PNG?raw=true "PushNotifications")
+![Basic](screenshots/1.png?raw=true "Basic")
