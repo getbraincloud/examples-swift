@@ -10,12 +10,17 @@ import BrainCloud
 
 class MainScene: UIViewController {
     
+    @IBOutlet weak var deviceTokenLabel: UILabel!
+    
     @IBOutlet var test: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addGestureRecognizer(
             UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
+        deviceTokenLabel.text = AppDelegate.pushToken
+        
         
     }
     
@@ -123,16 +128,43 @@ class MainScene: UIViewController {
     @IBOutlet weak var deviceToken: UILabel!
     
     @IBAction func OnRegisterPushNotificationsClicked(_ sender: Any) {
-         AppDelegate._bc.pushNotificationService.registerDeviceToken(PlatformObjc.iOS(), deviceToken: AppDelegate.pushToken, completionBlock: nil, errorCompletionBlock: nil, cbObject: nil)
-        
-        
+       
+        deviceTokenLabel.text = AppDelegate.pushToken
+        AppDelegate._bc.pushNotificationService.registerDeviceToken(
+            PlatformObjc.iOS(),
+            deviceToken: AppDelegate.pushToken,
+            completionBlock: OnPushNotificationSuccess,
+            errorCompletionBlock: nil,
+            cbObject: nil)
     }
     
     @IBAction func OnDeregisterPushNotificationsClicked(_ sender: Any) {
+        AppDelegate._bc.pushNotificationService.deregisterAllPushNotificationDeviceTokens(
+            OnPushNotificationSuccess,
+            errorCompletionBlock: nil,
+            cbObject: nil)
     }
     
     @IBAction func OnSendPushNotificationsClicked(_ sender: Any) {
+        AppDelegate._bc.pushNotificationService.sendSimplePushNotification(
+            AppDelegate._bc.storedProfileId,
+            message: "Message_" + String(describing: arc4random_uniform(2000)),
+            completionBlock: OnPushNotificationSuccess,
+            errorCompletionBlock: nil,
+            cbObject: nil);
+    }
     
+    @IBOutlet weak var pushLog: UILabel!
+    
+    func OnPushNotificationSuccess(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
+        
+        self.pushLog.text = "\n\(String(describing: serviceOperation)) Success \(String(describing: jsonData))"
+        
+    }
+    
+    func OnPushNotificationFailure(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
+        self.pushLog.text = "\n\(String(describing: serviceOperation)) Failed \(String(describing: jsonError))"
+        
     }
     
 }
