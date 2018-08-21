@@ -20,8 +20,6 @@ class MainScene: UIViewController {
             UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         deviceTokenLabel.text = AppDelegate.pushToken
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,8 +48,9 @@ class MainScene: UIViewController {
     }
     
     func onCreateEntity(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
-        print("Success \(String(describing: jsonData))")
-        self.entityLog.text = "\nCreateEntity Success \(String(describing: jsonData))"
+        print("\n\(serviceOperation!) Success \(jsonData!)")
+        
+        self.entityLog.text = "\n\(serviceOperation!) Success \(jsonData!)"
         
         let data = jsonData?.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
@@ -69,7 +68,7 @@ class MainScene: UIViewController {
     }
     
     func onCreateEntityFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
-        self.entityLog.text = "\nCreateEntity Failed \(String(describing: jsonError))"
+        self.entityLog.text = "\(serviceOperation!) Failed \(jsonError!)"
         
     }
     
@@ -83,14 +82,14 @@ class MainScene: UIViewController {
     
     func onDeleteEntity(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         
-        self.entityLog.text = "\n\(serviceOperation ?? "") Success \(jsonData  ?? "")"
+        self.entityLog.text = "\(serviceOperation!) Success \(jsonData!)"
         
         self.entityId.text = "";
         self.entityType.text = "";
     }
     
     func onDeleteEntityFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
-        self.entityLog.text = "\n\(serviceOperation ?? "") Failed \(jsonError  ?? "")"
+        self.entityLog.text = "\(serviceOperation!) Failed \(jsonError!)"
         
     }
     
@@ -155,13 +154,13 @@ class MainScene: UIViewController {
     
     func OnPushNotificationSuccess(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         
-        self.pushLog.text = "\n\(serviceOperation ?? "") Success \(jsonData  ?? "")"
+        self.pushLog.text = "\(serviceOperation!) Success \(jsonData!)"
         
     }
     
     func OnPushNotificationFailure(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
         
-        self.pushLog.text = "\n\(serviceOperation ?? "") Failed \(jsonError  ?? "")"
+        self.pushLog.text = "\(serviceOperation!) Failed \(jsonError!)"
         
     }
     
