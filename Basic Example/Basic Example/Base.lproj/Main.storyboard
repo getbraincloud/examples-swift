@@ -316,10 +316,11 @@
                                         </constraints>
                                         <segments>
                                             <segment title="Entity"/>
+                                            <segment title="Push Notification"/>
                                             <segment title="Logout"/>
                                         </segments>
                                         <connections>
-                                            <action selector="onChangeMenu:" destination="8rD-yT-3mY" eventType="valueChanged" id="lHk-4z-kWV"/>
+                                            <action selector="OnChangeMenu:" destination="8rD-yT-3mY" eventType="valueChanged" id="lHk-4z-kWV"/>
                                         </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CUQ-oy-Ebs">
@@ -458,7 +459,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ufw-aM-b9Q">
-                                                <rect key="frame" x="0.0" y="-120" width="374" height="230"/>
+                                                <rect key="frame" x="0.0" y="-190" width="374" height="230"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Um3-l7-FJb">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>

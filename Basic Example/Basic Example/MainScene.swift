@@ -6,6 +6,7 @@
 //  Copyright © 2018 brainCloud Support. All rights reserved.
 
 import UIKit
+import BrainCloud
 
 class MainScene: UIViewController {
     
@@ -90,10 +91,14 @@ class MainScene: UIViewController {
     @IBOutlet weak var entityMenu: UIStackView!
     @IBOutlet weak var pushNotificationMenu: UIStackView!
     
-    @IBAction func onChangeMenu(_ sender: UISegmentedControl) {
+    @IBAction func OnChangeMenu(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 0) {
-            //
+            entityMenu.isHidden = false;
+            pushNotificationMenu.isHidden = true;
         } else if(sender.selectedSegmentIndex == 1) {
+            entityMenu.isHidden = true;
+            pushNotificationMenu.isHidden = false;
+        } else if(sender.selectedSegmentIndex == 2) {
             AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
             
             AppDelegate._bc.getBCClient().authenticationService.clearSavedProfile();
@@ -118,11 +123,9 @@ class MainScene: UIViewController {
     @IBOutlet weak var deviceToken: UILabel!
     
     @IBAction func OnRegisterPushNotificationsClicked(_ sender: Any) {
+         AppDelegate._bc.pushNotificationService.registerDeviceToken(PlatformObjc.iOS(), deviceToken: AppDelegate.pushToken, completionBlock: nil, errorCompletionBlock: nil, cbObject: nil)
         
-      //  const char * token = "grnuo234gf89vrn2v789h24gf2gmk583490jgn0er";
         
-       // _bc->getPushNotificationService()->
-         //   registerPushNotificationDeviceToken(Platform::iOS, token, this);
     }
     
     @IBAction func OnDeregisterPushNotificationsClicked(_ sender: Any) {
