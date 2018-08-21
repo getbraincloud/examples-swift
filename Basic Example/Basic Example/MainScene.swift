@@ -11,7 +11,11 @@ class MainScene: UIViewController {
     
     @IBOutlet var test: UIView!
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
+        view.addGestureRecognizer(
+            UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,6 +104,32 @@ class MainScene: UIViewController {
             
             self.performSegue(withIdentifier: "onLogout", sender: nil)
         }
+    }
+    
+    
+    
+    
+    
+    /**
+        Push Notifications
+ 
+     */
+    
+    @IBOutlet weak var deviceToken: UILabel!
+    
+    @IBAction func OnRegisterPushNotificationsClicked(_ sender: Any) {
+        
+      //  const char * token = "grnuo234gf89vrn2v789h24gf2gmk583490jgn0er";
+        
+       // _bc->getPushNotificationService()->
+         //   registerPushNotificationDeviceToken(Platform::iOS, token, this);
+    }
+    
+    @IBAction func OnDeregisterPushNotificationsClicked(_ sender: Any) {
+    }
+    
+    @IBAction func OnSendPushNotificationsClicked(_ sender: Any) {
+    
     }
     
 }
