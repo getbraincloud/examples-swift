@@ -96,6 +96,8 @@ class MainScene: UIViewController {
             AppDelegate._bc.storedAnonymousId = "";
             AppDelegate._bc.storedProfileId = "";
             
+            UserDefaults.standard.set(false, forKey: "HasAuthenticated")
+            
             self.performSegue(withIdentifier: "onLogout", sender: nil)
         }
     }

@@ -25,10 +25,10 @@
                                         <rect key="frame" x="20" y="30" width="374" height="656"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="textLogo" translatesAutoresizingMaskIntoConstraints="NO" id="AJ2-Wd-lAt">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="85.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="85"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t64-KY-9xX">
-                                                <rect key="frame" x="0.0" y="85.333333333333343" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="85" width="374" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="nmo-aU-P79"/>
                                                 </constraints>
@@ -37,7 +37,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eP2-w5-ULf">
-                                                <rect key="frame" x="0.0" y="135.33333333333334" width="374" height="51"/>
+                                                <rect key="frame" x="0.0" y="135" width="374" height="51.333333333333343"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="5jD-N2-rDW"/>
                                                 </constraints>
@@ -211,11 +211,11 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your visible name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mkl-eL-8Df">
+                                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rookie" borderStyle="roundedRect" placeholder="Type your visible name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mkl-eL-8Df">
                                                                 <rect key="frame" x="120" y="0.0" width="254" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -225,9 +225,12 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="rw3-zw-QwT"/>
                                                         </constraints>
-                                                        <state key="normal" title="Login">
+                                                        <state key="normal" title="Register">
                                                             <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="OnRegisterClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rjN-Vn-Jkq"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCz-TZ-KyW">
                                                         <rect key="frame" x="0.0" y="360" width="374" height="0.0"/>
@@ -270,7 +273,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="lLoginError" destination="Zi0-ET-7dh" id="VsR-vZ-ul2"/>
+                        <outlet property="lPassword" destination="7w3-Xs-aEi" id="mWu-Ai-KG6"/>
+                        <outlet property="lUserId" destination="PXO-Pp-lF5" id="9hR-K5-gaU"/>
                         <outlet property="loginView" destination="vw5-Mo-84K" id="Iiw-Np-cnf"/>
+                        <outlet property="rName" destination="mkl-eL-8Df" id="Jgi-3y-phm"/>
+                        <outlet property="rPassword" destination="wss-l9-I0B" id="1Hh-bH-Fmq"/>
+                        <outlet property="rRegisterError" destination="kCz-TZ-KyW" id="phD-oA-QGs"/>
+                        <outlet property="rUserId" destination="oBU-b1-etv" id="Ekl-cN-3AR"/>
                         <outlet property="registerView" destination="TCe-Pc-2pp" id="AJu-8a-6fL"/>
                         <segue destination="8rD-yT-3mY" kind="showDetail" identifier="onLogin" id="Ode-l9-PSp"/>
                     </connections>

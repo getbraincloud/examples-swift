@@ -9,17 +9,18 @@
 import UIKit
 
 class LoginScene: UIViewController {
-    @IBOutlet weak var userId: UITextField!
-    @IBOutlet weak var password: UITextField!
-    
-    @IBOutlet weak var loginError: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AppDelegate._bc.reconnect(onAuthenticate,
-                                  errorCompletionBlock: onAuthenticateFailed,
-                                  cbObject: nil)
+        
+        // If user has already authenticated, so let's reconnect
+        if(UserDefaults.standard.bool(forKey: "HasAuthenticated")) {
+            AppDelegate._bc.reconnect(onAuthenticate,
+                                      errorCompletionBlock: onAuthenticateFailed,
+                                      cbObject: nil)
+        }
         
     }
     
@@ -46,7 +47,14 @@ class LoginScene: UIViewController {
         }
     }
     
+    /**
+     Login
+     */
     
+    @IBOutlet weak var lUserId: UITextField!
+    @IBOutlet weak var lPassword: UITextField!
+    
+    @IBOutlet weak var lLoginError: UILabel!
     
     @IBAction func OnLoginClicked(_ sender: Any) {
         
@@ -65,8 +73,8 @@ class LoginScene: UIViewController {
             cbObject: nil)
          */
         
-        AppDelegate._bc.authenticateUniversal(userId.text,
-                                              password: password.text,
+        AppDelegate._bc.authenticateUniversal(lUserId.text,
+                                              password: lPassword.text,
                                               forceCreate: false,
                                               completionBlock: onAuthenticate,
                                               errorCompletionBlock: onAuthenticateFailed,
@@ -75,24 +83,6 @@ class LoginScene: UIViewController {
     
     func onAuthenticate(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         print("Success \(String(describing: jsonData))")
-        
-        /*
-         BRAINCLOUD_INFO
-         
-         // After our user logs in, we are going to see if they are a newUser, and if they are, we are going to update their "name" to match their universalId
-         
-         let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: AnyObject]
-         let isNewUser = json["data"]?["newUser"] as! Bool;
-         
-         if(isNewUser) {
-            AppDelegate._bc.playerStateService.updateName(self.userId.text,
-            completionBlock: nil,
-            errorCompletionBlock: nil,
-            cbObject: nil)
-         }
-         
-         After, we will go to our main app scene, given the user has logged in
-         */
         
         let data = jsonData?.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
@@ -103,7 +93,7 @@ class LoginScene: UIViewController {
             let isNewUser = data["newUser"] as! String;
             
             if(isNewUser.elementsEqual("true")) {
-                AppDelegate._bc.playerStateService.updateName(self.userId?.text,
+                AppDelegate._bc.playerStateService.updateName(self.lUserId?.text,
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)
@@ -114,12 +104,23 @@ class LoginScene: UIViewController {
         }
         
         
+        UserDefaults.standard.set(true, forKey: "HasAuthenticated")
+        
         self.performSegue(withIdentifier: "onLogin", sender: nil)
         
     }
     
     func onAuthenticateFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
         print("Failure \(String(describing: serviceName))")
+        
+        if(reasonCode == 40208) {
+            self.lLoginError.text = "Account does not exist. Please register instead."
+        } else {
+            
+            self.lLoginError.text = "Login Error \(String(describing: reasonCode))"
+        }
+        
+        UserDefaults.standard.set(false, forKey: "HasAuthenticated")
         
         /*
          BRAINCLOUD_INFO
@@ -129,8 +130,91 @@ class LoginScene: UIViewController {
          // Display an error to the user, based on the problem that occured
          */
         
-        self.loginError.text = "Login Error \(String(describing: reasonCode))"
     }
+    
+    
+    /**
+     Register
+     */
+    
+    @IBOutlet weak var rUserId: UITextField!
+    @IBOutlet weak var rPassword: UITextField!
+    @IBOutlet weak var rName: UITextField!
+    @IBOutlet weak var rRegisterError: UILabel!
+    
+    @IBAction func OnRegisterClicked(_ sender: Any) {
+        AppDelegate._bc.authenticateUniversal(rUserId.text,
+                                              password: rPassword.text,
+                                              forceCreate: true,
+                                              completionBlock: onRegister,
+                                              errorCompletionBlock: onRegisterFailed,
+                                              cbObject: nil)
+    }
+    
+    func onRegister(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
+        print("Success \(String(describing: jsonData))")
+        
+        
+        let data = jsonData?.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+        
+        /*
+         BRAINCLOUD_INFO
+         
+         // After our user logs in, we are going to see if they are a newUser, and if they are, we are going to update their "name" to match their universalId
+         
+         let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: AnyObject]
+         let isNewUser = json["data"]?["newUser"] as! Bool;
+         
+         if(isNewUser) {
+         AppDelegate._bc.playerStateService.updateName(self.userId.text,
+            completionBlock: nil,
+            errorCompletionBlock: nil,
+            cbObject: nil)
+         }
+         */
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: AnyObject]
+            
+            let data = json["data"] as AnyObject;
+            let isNewUser = data["newUser"] as! String;
+            
+            if(isNewUser.elementsEqual("true")) {
+                AppDelegate._bc.playerStateService.updateName(self.lUserId?.text,
+                                                              completionBlock: nil,
+                                                              errorCompletionBlock: nil,
+                                                              cbObject: nil)
+                
+                
+                
+                UserDefaults.standard.set(true, forKey: "HasAuthenticated")
+                
+                self.performSegue(withIdentifier: "onLogin", sender: nil)
+                
+            } else {
+                /*
+                 If they aren't a new user, we are going to logout and throw an error that they need to login instead
+                 */
+                
+                AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
+                
+                rRegisterError.text = "User already exists, please login instead.";
+            }
+        } catch let error as NSError {
+            print("Failed to load: \(error.localizedDescription)")
+        }
+        
+        
+    }
+    
+    func onRegisterFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
+        print("Failure \(String(describing: serviceName))")
+        
+        UserDefaults.standard.set(false, forKey: "HasAuthenticated")
+        
+        self.rRegisterError.text = "Could not register. If user already exists, please login instead.";
+    }
+    
     
 }
 
