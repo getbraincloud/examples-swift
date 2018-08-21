@@ -15,4 +15,4 @@ This is Swift example demonstrates the following:
 - Entities
 - Push Notifications
 
-![Basic](screenshots/1.png?raw=true "Basic")
+![Basic](screenshots/1.PNG?raw=true "Basic")
