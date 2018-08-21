@@ -8,16 +8,17 @@
 
 import UIKit
 import BrainCloud
+import UserNotifications
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     static var _bc: BrainCloudWrapper = BrainCloudWrapper();
     
-
-
+    var deviceTokenString: String?;
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         UserDefaults.standard.register(defaults: ["HasAuthenticated" : true])
@@ -37,45 +38,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          // See the readme for more info: https://github.com/getbraincloud/braincloud-objc/blob/master/README.md
          
          AppDelegate._bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
-            secretKey: YOUR_SECRET,
-            gameId: YOUR_APPID,
-            gameVersion: "1.0.0",
-            companyName: YOUR_COMPANY,
-            gameName: YOUR_GAME_NAME)
-        */
+         secretKey: YOUR_SECRET,
+         gameId: YOUR_APPID,
+         gameVersion: "1.0.0",
+         companyName: YOUR_COMPANY,
+         gameName: YOUR_GAME_NAME)
+         */
         
         AppDelegate._bc = BrainCloudWrapper()
         
         AppDelegate._bc.getBCClient().enableLogging(true)
         
         AppDelegate._bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
-                                  secretKey: "921d9acc-e286-4b37-91b6-a394f4e6ff4f",    // Replace the Secret and
-                                  gameId: "12049",                                      // AppId with the one on the dashboard
-                                  gameVersion: "1.0.0",
-                                  companyName: "brainCloud",
-                                  gameName: "Basic - Swift")
+                                   secretKey: "921d9acc-e286-4b37-91b6-a394f4e6ff4f",    // Replace the Secret and
+            gameId: "12049",                                      // AppId with the one on the dashboard
+            gameVersion: "1.0.0",
+            companyName: "brainCloud",
+            gameName: "Basic - Swift")
+        
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
+        application.registerForRemoteNotifications()
+        
+        
+        
         
         return true
     }
-
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(deviceTokenString)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        print(error)
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
-
+        
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
-
+        
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
-
+        
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
-
+        
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
-
+        
     }
 }
 

@@ -102,5 +102,31 @@ class MainScene: UIViewController {
         }
     }
     
+    
+    
+    
+    
+    /**
+        Push Notifications
+ 
+     */
+    
+    @IBOutlet weak var deviceToken: UILabel!
+    
+    @IBAction func OnRegisterPushNotificationsClicked(_ sender: Any) {
+        
+      //  const char * token = "grnuo234gf89vrn2v789h24gf2gmk583490jgn0er";
+        
+       // _bc->getPushNotificationService()->
+         //   registerPushNotificationDeviceToken(Platform::iOS, token, this);
+    }
+    
+    @IBAction func OnDeregisterPushNotificationsClicked(_ sender: Any) {
+    }
+    
+    @IBAction func OnSendPushNotificationsClicked(_ sender: Any) {
+    
+    }
+    
 }
 
