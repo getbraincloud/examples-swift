@@ -83,14 +83,15 @@ class MainScene: UIViewController {
     
     func onDeleteEntity(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         
-        self.entityLog.text = "\nDeleteEntity Success \(String(describing: jsonData))"
+        self.entityLog.text = "\n\(serviceOperation ?? "") Success \(jsonData  ?? "")"
         
         self.entityId.text = "";
         self.entityType.text = "";
     }
     
     func onDeleteEntityFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
-        self.entityLog.text = "\nDeleteEntity Failed \(String(describing: jsonError))"
+        self.entityLog.text = "\n\(serviceOperation ?? "") Failed \(jsonError  ?? "")"
+        
     }
     
     @IBOutlet weak var entityMenu: UIStackView!
@@ -117,12 +118,8 @@ class MainScene: UIViewController {
     }
     
     
-    
-    
-    
     /**
         Push Notifications
- 
      */
     
     @IBOutlet weak var deviceToken: UILabel!
@@ -158,12 +155,13 @@ class MainScene: UIViewController {
     
     func OnPushNotificationSuccess(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         
-        self.pushLog.text = "\n\(String(describing: serviceOperation)) Success \(String(describing: jsonData))"
+        self.pushLog.text = "\n\(serviceOperation ?? "") Success \(jsonData  ?? "")"
         
     }
     
     func OnPushNotificationFailure(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
-        self.pushLog.text = "\n\(String(describing: serviceOperation)) Failed \(String(describing: jsonError))"
+        
+        self.pushLog.text = "\n\(serviceOperation ?? "") Failed \(jsonError  ?? "")"
         
     }
     
