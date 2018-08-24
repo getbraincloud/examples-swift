@@ -18,9 +18,12 @@ class LoginScene: UIViewController {
         
         // If user has already authenticated, so let's reconnect
         if(UserDefaults.standard.bool(forKey: "HasAuthenticated")) {
-            AppDelegate._bc.reconnect(onAuthenticate,
-                                      errorCompletionBlock: onAuthenticateFailed,
-                                      cbObject: nil)
+            reconnectBtn.isEnabled = true
+            
+            profileId.text = AppDelegate._bc.storedProfileId;
+            anonId.text = AppDelegate._bc.storedAnonymousId;
+        } else {
+            reconnectBtn.isEnabled = false
         }
         
     }
@@ -35,12 +38,7 @@ class LoginScene: UIViewController {
         } else if(sender.selectedSegmentIndex == 1) {
             loginView.isHidden = true;
             registerView.isHidden = false;
-        } else {
-            AppDelegate._bc.authenticateAnonymous(onAuthenticate,
-                                                  errorCompletionBlock: onAuthenticateFailed,
-                                                  cbObject: nil)
-            
-        }
+        } 
     }
     
     /**
@@ -127,6 +125,18 @@ class LoginScene: UIViewController {
     }
     
     
+    @IBOutlet weak var reconnectBtn: UIButton!
+    @IBOutlet weak var profileId: UITextField!
+    @IBOutlet weak var anonId: UITextField!
+    
+    @IBAction func onReconnectClicked(_ sender: Any) {
+        AppDelegate._bc.reconnect(onAuthenticate,
+                                  errorCompletionBlock: onAuthenticateFailed,
+                                  cbObject: nil)
+    }
+    
+    
+    
     /**
      Register
      */
@@ -136,7 +146,7 @@ class LoginScene: UIViewController {
     @IBOutlet weak var rName: UITextField!
     @IBOutlet weak var rRegisterError: UILabel!
     
-    @IBAction func OnRegisterClicked(_ sender: Any) {
+    @IBAction func onRegisterClicked(_ sender: Any) {
         AppDelegate._bc.authenticateEmailPassword(rEmail.text,
                                               password: rPassword.text,
                                               forceCreate: true,
@@ -197,6 +207,17 @@ class LoginScene: UIViewController {
         UserDefaults.standard.set(false, forKey: "HasAuthenticated")
         
         self.rRegisterError.text = "Could not register. If user already exists, please login instead.";
+    }
+    
+    
+    @IBAction func onAnonymousLoginClicked(_ sender: Any) {
+        AppDelegate._bc.storedAnonymousId = "";
+        AppDelegate._bc.storedProfileId = "";
+        
+        AppDelegate._bc.authenticateAnonymous(onAuthenticate,
+                                              errorCompletionBlock: onAuthenticateFailed,
+                                              cbObject: nil)
+        
     }
     
     

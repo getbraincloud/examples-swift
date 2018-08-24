@@ -8,11 +8,40 @@
 import UIKit
 import BrainCloud
 
-class MainScene: UIViewController {
+class MainScene: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource   {
+   
+    let ENTITY_TYPE = "Person"
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    
+    var pickerData = [] as Array<String>
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    var lastRow = 0
+    var entities = Array<AnyObject>()
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if(lastRow != row) {
+           
+            
+            var entity = entities[row] as! Dictionary<String, AnyObject>
+            
+            entityType.text = entity["entityType"] as? String
+            name.text = entity["data"]?["name"] as? String
+            age.text = entity["data"]?["age"] as? String
+            
+            lastRow = row;
+        }
+        
+        return pickerData[row]
+    }
+    
     
     @IBOutlet weak var deviceTokenLabel: UILabel!
     
-    @IBOutlet var test: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,34 +49,15 @@ class MainScene: UIViewController {
             UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         deviceTokenLabel.text = AppDelegate.pushToken
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
-    @IBOutlet weak var entityId: UITextField!
-    @IBOutlet weak var entityType: UITextField!
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var age: UITextField!
-    
-    @IBOutlet weak var entityLog: UITextView!
-    
-    @IBAction func onCreateEntity(_ sender: Any) {
-        let jsonData = "{ \"name\": \"\(name)\", \"age\": \"\(age)\" }"
-        let jsonAcl = "{ \"other\": 0 }"
         
-        AppDelegate._bc.entityService.createEntity("Person",
-                                                   jsonEntityData: jsonData,
-                                                   jsonEntityAcl: jsonAcl,
-                                                   completionBlock: onCreateEntity,
-                                                   errorCompletionBlock: onCreateEntityFailed,
-                                                   cbObject: nil)
-        
+        AppDelegate._bc.entityService.getEntitiesByType(
+            ENTITY_TYPE,
+            completionBlock: onGetEntitiesByType,
+            errorCompletionBlock: onGetEntitiesByTypeFailed,
+            cbObject: nil)
     }
     
-    func onCreateEntity(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
+    func onGetEntitiesByType(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         print("\n\(serviceOperation!) Success \(jsonData!)")
         
         self.entityLog.text = "\n\(serviceOperation!) Success \(jsonData!)"
@@ -56,14 +66,69 @@ class MainScene: UIViewController {
         
         do {
             let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: AnyObject]
-            let entityIdData = json["data"]?["entityId"] as! String;
-            let entityTypeData = json["data"]?["entityType"] as! String;
             
-            self.entityId.text = entityIdData;
-            self.entityType.text = entityTypeData;
+            entities = json["data"]!["entities"] as! Array<AnyObject>;
+            
+            pickerData = []
+            
+            for entity in entities {
+                let entityData = entity as! Dictionary<String, AnyObject>
+                pickerData.append(entityData["entityId"] as! String);
+            }
+            
+            entityIdPicker.reloadAllComponents()
+            
+            print(entities);
+            
         } catch let error as NSError {
             print("Failed to load: \(error.localizedDescription)")
         }
+        
+    }
+    
+    func onGetEntitiesByTypeFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
+        self.entityLog.text = "\(serviceOperation!) Failed \(jsonError!)"
+        
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    @IBOutlet weak var entityIdPicker: UIPickerView!
+    @IBOutlet weak var entityType: UITextField!
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var age: UITextField!
+    
+    @IBOutlet weak var entityLog: UITextView!
+    
+    @IBAction func onCreateEntity(_ sender: Any) {
+        let jsonData = "{ \"name\": \"\(name.text!)\", \"age\": \"\(age.text!)\" }"
+        let jsonAcl = "{ \"other\": 0 }"
+        
+        AppDelegate._bc.entityService.createEntity(ENTITY_TYPE,
+                                                   jsonEntityData: jsonData,
+                                                   jsonEntityAcl: jsonAcl,
+                                                   completionBlock: onCreateEntity,
+                                                   errorCompletionBlock: onCreateEntityFailed,
+                                                   cbObject: nil)
+        
+        
+    }
+    
+    func onCreateEntity(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
+        print("\n\(serviceOperation!) Success \(jsonData!)")
+        
+        self.entityLog.text = "\n\(serviceOperation!) Success \(jsonData!)"
+        
+        AppDelegate._bc.entityService.getEntitiesByType(
+            ENTITY_TYPE,
+            completionBlock: onGetEntitiesByType,
+            errorCompletionBlock: onGetEntitiesByTypeFailed,
+            cbObject: nil)
+        
         
     }
     
@@ -73,7 +138,7 @@ class MainScene: UIViewController {
     }
     
     @IBAction func onDeleteEntity(_ sender: Any) {
-        AppDelegate._bc.entityService.delete(entityId.text,
+        AppDelegate._bc.entityService.delete(pickerData[entityIdPicker.selectedRow(inComponent: 0)],
                                              version: -1,
                                              completionBlock: onDeleteEntity,
                                              errorCompletionBlock: onDeleteEntityFailed,
@@ -84,8 +149,11 @@ class MainScene: UIViewController {
         
         self.entityLog.text = "\(serviceOperation!) Success \(jsonData!)"
         
-        self.entityId.text = "";
-        self.entityType.text = "";
+        AppDelegate._bc.entityService.getEntitiesByType(
+            ENTITY_TYPE,
+            completionBlock: onGetEntitiesByType,
+            errorCompletionBlock: onGetEntitiesByTypeFailed,
+            cbObject: nil)
     }
     
     func onDeleteEntityFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
@@ -96,7 +164,7 @@ class MainScene: UIViewController {
     @IBOutlet weak var entityMenu: UIStackView!
     @IBOutlet weak var pushNotificationMenu: UIStackView!
     
-    @IBAction func OnChangeMenu(_ sender: UISegmentedControl) {
+    @IBAction func onChangeMenu(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 0) {
             entityMenu.isHidden = false;
             pushNotificationMenu.isHidden = true;
@@ -104,11 +172,15 @@ class MainScene: UIViewController {
             entityMenu.isHidden = true;
             pushNotificationMenu.isHidden = false;
         } else if(sender.selectedSegmentIndex == 2) {
-            AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
+            AppDelegate._bc.playerStateService.logout(
+                nil,
+                errorCompletionBlock: nil,
+                cbObject: nil)
             
-            AppDelegate._bc.getBCClient().authenticationService.clearSavedProfile();
-            AppDelegate._bc.storedAnonymousId = "";
-            AppDelegate._bc.storedProfileId = "";
+            AppDelegate._bc.getBCClient()
+                .authenticationService.clearSavedProfile()
+            AppDelegate._bc.storedAnonymousId = ""
+            AppDelegate._bc.storedProfileId = ""
             
             UserDefaults.standard.set(false, forKey: "HasAuthenticated")
             
@@ -123,46 +195,44 @@ class MainScene: UIViewController {
     
     @IBOutlet weak var deviceToken: UILabel!
     
-    @IBAction func OnRegisterPushNotificationsClicked(_ sender: Any) {
+    @IBAction func onRegisterPushNotificationsClicked(_ sender: Any) {
        
         deviceTokenLabel.text = AppDelegate.pushToken
         AppDelegate._bc.pushNotificationService.registerDeviceToken(
             PlatformObjc.iOS(),
             deviceToken: AppDelegate.pushToken,
-            completionBlock: OnPushNotificationSuccess,
+            completionBlock: onPushNotificationSuccess,
             errorCompletionBlock: nil,
             cbObject: nil)
     }
     
-    @IBAction func OnDeregisterPushNotificationsClicked(_ sender: Any) {
+    @IBAction func onDeregisterPushNotificationsClicked(_ sender: Any) {
         AppDelegate._bc.pushNotificationService.deregisterAllPushNotificationDeviceTokens(
-            OnPushNotificationSuccess,
+            onPushNotificationSuccess,
             errorCompletionBlock: nil,
             cbObject: nil)
     }
     
-    @IBAction func OnSendPushNotificationsClicked(_ sender: Any) {
+    @IBAction func onSendPushNotificationsClicked(_ sender: Any) {
         AppDelegate._bc.pushNotificationService.sendSimplePushNotification(
             AppDelegate._bc.storedProfileId,
             message: "Message_" + String(describing: arc4random_uniform(2000)),
-            completionBlock: OnPushNotificationSuccess,
+            completionBlock: onPushNotificationSuccess,
             errorCompletionBlock: nil,
-            cbObject: nil);
+            cbObject: nil)
     }
     
     @IBOutlet weak var pushLog: UILabel!
     
-    func OnPushNotificationSuccess(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
+    func onPushNotificationSuccess(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         
         self.pushLog.text = "\(serviceOperation!) Success \(jsonData!)"
         
     }
     
-    func OnPushNotificationFailure(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
+    func onPushNotificationFailure(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
         
         self.pushLog.text = "\(serviceOperation!) Failed \(jsonError!)"
-        
     }
-    
 }
 
