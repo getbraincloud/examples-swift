@@ -12,7 +12,7 @@ https://portal.braincloudservers.com/
 
 Package | Description
  ---- | ----
-[**Nutget**](https://www.nuget.org/packages/brainCloudCppSdk) | Windows Universal C++ Nuget Packages
+[**Nuget**](https://www.nuget.org/packages/brainCloudCppSdk) | Windows Universal C++ Nuget Packages
 [**Cocoapod**](https://cocoapods.org/pods/BrainCloudCpp) | 	Cocoapod for AppleTV, iOS, OSX
 [**brainCloudClient_Android_C._X.X.X.zip**](https://github.com/getbraincloud/braincloud-cpp/releases) | Android C++ libraries
 [**brainCloudClient_Apple_C._X.X.X.zip**](https://github.com/getbraincloud/braincloud-cpp/releases) | Apple libraries for AppleTV, iOS, OSX
@@ -130,3 +130,6 @@ _bc->getBCClient()->getIdentityService()->attachEmailIdentity(_email, _password,
 ```
 There are many authentication types. You can also merge profiles and detach idenities. See the brainCloud documentation for more information:
 http://getbraincloud.com/apidocs/apiref/?java#capi-auth
+
+## Attributions
+The brainCloud C++ library uses [libwebsockets v3.0.1](https://github.com/warmcat/libwebsockets/releases/tag/v3.0.1).

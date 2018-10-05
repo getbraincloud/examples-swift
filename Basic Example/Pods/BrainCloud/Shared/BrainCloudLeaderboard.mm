@@ -43,6 +43,17 @@
         [leaderboardId UTF8String], replaceName, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getSocialLeaderboardByVersion:(NSString *)leaderboardId
+                          replaceName:(bool)replaceName
+                            versionId:(int)versionId
+                      completionBlock:(BCCompletionBlock)cb
+                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                             cbObject:(BCCallbackObject)cbObject
+{
+    _client->getSocialLeaderboardService()->getSocialLeaderboardByVersion(
+        [leaderboardId UTF8String], replaceName, versionId, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)getMultiSocialLeaderboard:(NSArray *)leaderboardIds
            leaderboardResultCount:(NSInteger)leaderboardResultCount
                       replaceName:(bool)replaceName
@@ -212,6 +223,17 @@
         [leaderboardId UTF8String], [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getGroupSocialLeaderboardByVersion:(NSString *)leaderboardId
+                                   groupId:(NSString *)groupId
+                                 versionId:(int)versionId
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject
+{
+    _client->getSocialLeaderboardService()->getGroupSocialLeaderboardByVersion(
+        [leaderboardId UTF8String], [groupId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)getPlayersSocialLeaderboard:(NSString *)leaderboardId
                          profileIds:(NSArray *)profileIds
                     completionBlock:(BCCompletionBlock)cb
@@ -227,6 +249,24 @@
 
     _client->getSocialLeaderboardService()->getPlayersSocialLeaderboard(
         [leaderboardId UTF8String], lbIds, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getPlayersSocialLeaderboardByVersion:(NSString *)leaderboardId
+                                  profileIds:(NSArray *)profileIds
+                                   versionId:(int)versionId
+                             completionBlock:(BCCompletionBlock)cb
+                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                    cbObject:(BCCallbackObject)cbObject
+{
+    std::vector<std::string> lbIds;
+    for (NSString *nsid in profileIds)
+    {
+        std::string lbId = [nsid UTF8String];
+        lbIds.push_back(lbId);
+    }
+    
+    _client->getSocialLeaderboardService()->getPlayersSocialLeaderboardByVersion(
+        [leaderboardId UTF8String], lbIds, versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)listAllLeaderboards:(BCCompletionBlock)cb

@@ -638,4 +638,24 @@ typedef NS_ENUM(NSUInteger, AutoJoinStrategy) { JoinFirstGroup, JoinRandomGroup 
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Set whether a group is open true or false
+ *
+ * Service Name - group
+ * Service Operation - SET_GROUP_OPEN
+ *
+ * @param groupId ID of the group.
+ * @param isOpenGroup whether its open or not.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)setGroupOpen:(NSString *)groupId
+         isOpenGroup:(bool)isOpenGroup
+     completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject;
+
 @end
+

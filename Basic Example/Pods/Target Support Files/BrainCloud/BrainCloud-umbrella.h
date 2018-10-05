@@ -12,6 +12,7 @@
 
 #import "ACL.hh"
 #import "AuthenticationTypeObjc.hh"
+#import "BrainCloudAppStore.hh"
 #import "BrainCloudAsyncMatch.hh"
 #import "BrainCloudAuthentication.hh"
 #import "BrainCloudClient.hh"
@@ -36,6 +37,7 @@
 #import "BrainCloudPlayerState.hh"
 #import "BrainCloudPlayerStatistics.hh"
 #import "BrainCloudPlayerStatisticsEvent.hh"
+#import "BrainCloudPresence.hh"
 #import "BrainCloudProduct.hh"
 #import "BrainCloudProfanity.hh"
 #import "BrainCloudPushNotification.hh"
@@ -45,6 +47,7 @@
 #import "BrainCloudScript.hh"
 #import "BrainCloudTime.hh"
 #import "BrainCloudTournament.hh"
+#import "BrainCloudVirtualCurrency.hh"
 #import "BrainCloudWrapper.hh"
 #import "FriendPlatformObjc.hh"
 #import "PlatformObjc.hh"
