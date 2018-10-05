@@ -56,6 +56,37 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                     cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Method returns the social leaderboard by its version. A player's social leaderboard is
+ * comprised of players who are recognized as being your friend.
+ * For now, this applies solely to Facebook connected players who are
+ * friends with the logged in player (who also must be Facebook connected).
+ * In the future this will expand to other identification means (such as
+ * Game Centre, Google circles etc).
+ *
+ * Leaderboards entries contain the player's score and optionally, some user-defined
+ * data associated with the score. The currently logged in player will also
+ * be returned in the social leaderboard.
+ *
+ * Note: If no friends have played the game, the bestScore, createdAt, updatedAt
+ * will contain NULL.
+ *
+ * @param leaderboardId The id of the leaderboard to retrieve
+ * @param replaceName If true, the currently logged in player's name will be replaced
+ * by the string "You".
+ * @param versionId the version
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ */
+- (void)getSocialLeaderboardByVersion:(NSString *)leaderboardId
+                          replaceName:(bool)replaceName
+                            versionId:(int)versionId
+                      completionBlock:(BCCompletionBlock)cb
+                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                             cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Reads multiple social leaderboards.
  *
  * @param leaderboardIds NSArray of NSString leaderboard IDs.
@@ -405,6 +436,23 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                          cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Retrieve the social leaderboard for a group by its version.
+ *
+ * @param leaderboardId The leaderboard to retreive
+ * @param groupId The ID of the group
+ * @param versionId the version
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getGroupSocialLeaderboardByVersion:(NSString *)leaderboardId
+                                   groupId:(NSString *)groupId
+                                 versionId:(int)versionId
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Retrieve the social leaderboard for a list of players.
  *
  * Service Name - leaderboard
@@ -421,6 +469,26 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                     completionBlock:(BCCompletionBlock)cb
                errorCompletionBlock:(BCErrorCompletionBlock)ecb
                            cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieve the social leaderboard for a list of players by their version.
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_PLAYERS_SOCIAL_LEADERBOARD_BY_VERSION
+ *
+ * @param leaderboardId The leaderboard to retrieve
+ * @param profileIds The IDs of the players
+ * @param versionId the version
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getPlayersSocialLeaderboardByVersion:(NSString *)leaderboardId
+                                  profileIds:(NSArray *)profileIds
+                                   versionId:(int)versionId
+                             completionBlock:(BCCompletionBlock)cb
+                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                    cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Retrieve a list of all leaderboards

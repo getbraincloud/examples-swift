@@ -8,6 +8,19 @@ If you haven't signed up or you want to log into the brainCloud portal, you can 
 
 https://portal.braincloudservers.com/
 
+## Releases
+
+Package | Description
+ ---- | ----
+[**Cocoapod**](https://cocoapods.org/pods/BrainCloud) | 	Cocoapod for AppleTV, iOS, OSX
+[**brainCloudClient_ObjC_X.X.X.X.zip**](https://github.com/getbraincloud/braincloud-objc/releases) | Apple libraries for AppleTV, iOS, OSX
+
+
+## Example Projects
+
+Examples of using brainCloud in your Swift Projects can be found [here](https://github.com/getbraincloud/examples-swift).
+
+
 ## Installation
 
 The library is distributed through `CocoaPods`. In order to install the library, simply add the following to your `Podfile`.

@@ -58,6 +58,72 @@
                    cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Get the status of a division
+ *
+ * Service Name - tournament
+ * Service Operation - GET_DIVISION_INFO
+ *
+ * @param divSetId The id for the division
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getDivisionInfo:(NSString *)divSetId
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets the player's recently active divisions
+ *
+ * Service Name - tournament
+ * Service Operation - GET_MY_DIVISIONS
+ *
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getMyDivisions:(BCCompletionBlock)cb
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Joins a division
+ *
+ * Service Name - tournament
+ * Service Operation - JOIN_DIVISION
+ *
+ * @param divSetId the id for the division
+ * @param tournamentCode the tournament to join
+ * @param initialScore score for player starting tournament, usually 0
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)joinDivision:(NSString *) divSetId
+      tournamentCode: (NSString *)tournamentCode
+        initialScore: (long)initialScore
+     completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Leaves the specifid division
+ *
+ * Service Name - tournament
+ * Service Operation - LEAVE_DIVISION_INSTANCE
+ *
+ * @param leaderBoardId the id of the tournament
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)leaveDivisionInstance:(NSString *) leaderBoardId
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Join the specified tournament.
  * Any entry fees will be automatically collected.
  *

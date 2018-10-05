@@ -7,6 +7,7 @@
 #pragma once
 
 extern NSString const *const BrainCloudServiceNameNone;
+extern NSString const *const BrainCloudServiceNameAppStore;
 extern NSString const *const BrainCloudServiceNameAuthenticate;
 extern NSString const *const BrainCloudServiceNameAuthenticateV2;
 extern NSString const *const BrainCloudServiceNameIdentity;
@@ -41,3 +42,4 @@ extern NSString const *const BrainCloudServiceNameRedemptionCode;
 extern NSString const *const BrainCloudServiceNameDataStream;
 extern NSString const *const BrainCloudServiceNameProfanity;
 extern NSString const *const BrainCloudServiceNameFile;
+extern NSString const *const BrainCloudServiceNameVirtualCurrency;

@@ -54,11 +54,49 @@
         [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getDivisionInfo:(NSString *)divSetId
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject
+{
+    _client->getTournamentService()->getDivisionInfo(
+        [divSetId UTF8String],new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getMyDivisions:(BCCompletionBlock)cb
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject
+{
+    _client->getTournamentService()->getMyDivisions(
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)joinDivision:(NSString *)divSetId
+      tournamentCode:(NSString *)tournamentCode
+        initialScore:(long)initialScore
+     completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject
+{
+    _client->getTournamentService()->joinDivision(
+        [divSetId UTF8String], [tournamentCode UTF8String], initialScore,
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)leaveDivisionInstance:(NSString *)leaderBoardId
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject
+{
+    _client->getTournamentService()->leaveDivisionInstance(
+        [leaderBoardId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)joinTournament:(NSString *)leaderboardId
-          tournamentCode:(NSString *)tournamentCode
-            initialScore:(int)initialScore
-         completionBlock:(BCCompletionBlock)cb
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+        tournamentCode:(NSString *)tournamentCode
+          initialScore:(int)initialScore
+       completionBlock:(BCCompletionBlock)cb
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
     _client->getTournamentService()->joinTournament(
@@ -67,9 +105,9 @@
 }
 
 - (void)leaveTournament:(NSString *)leaderboardId
-         completionBlock:(BCCompletionBlock)cb
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject
 {
     _client->getTournamentService()->leaveTournament(
         [leaderboardId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
