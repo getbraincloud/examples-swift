@@ -561,6 +561,9 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 @property(readonly) BrainCloudPlayerStatisticsEvent *playerStatisticsEventService;
 @property(readonly) BrainCloudTime *timeService;
 @property(readonly) BrainCloudTournament *tournamentService;
+@property(readonly) BrainCloudPresence *presenceService;
+@property(readonly) BrainCloudVirtualCurrency *virtualCurrencyService;
+@property(readonly) BrainCloudAppStore *appStoreService;
 @property(readonly) BrainCloudS3Handling *s3HandlingService;
 @property(readonly) BrainCloudIdentity *identityService;
 @property(readonly) BrainCloudRedemptionCode *redemptionCodeService;

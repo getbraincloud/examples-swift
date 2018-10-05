@@ -361,4 +361,14 @@
         [groupId UTF8String], [name UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)setGroupOpen:(NSString *)groupId
+         isOpenGroup:(bool)isOpenGroup
+     completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject
+{
+    _client->getGroupService()->setGroupOpen(
+         [groupId UTF8String], isOpenGroup, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end

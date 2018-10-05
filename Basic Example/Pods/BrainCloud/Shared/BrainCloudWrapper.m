@@ -320,7 +320,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     [[_bcClient authenticationService] authenticateExternal:userId
                                         authenticationToken:authToken
                                  externalAuthenticationName:externalAuthName
-                                                forceCreate:YES
+                                                forceCreate:forceCreate
                                             completionBlock:self.authSuccessCompletionBlock
                                        errorCompletionBlock:self.authErrorCompletionBlock
                                                    cbObject:aco];
@@ -343,7 +343,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     
     [[_bcClient authenticationService] authenticateFacebook:fbUserId
                                         authenticationToken:fbAuthToken
-                                                forceCreate:YES
+                                                forceCreate:forceCreate
                                             completionBlock:self.authSuccessCompletionBlock
                                        errorCompletionBlock:self.authErrorCompletionBlock
                                                    cbObject:aco];
@@ -364,7 +364,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateGameCenter:gameCenterId
-                                                  forceCreate:YES
+                                                  forceCreate:forceCreate
                                               completionBlock:self.authSuccessCompletionBlock
                                          errorCompletionBlock:self.authErrorCompletionBlock
                                                      cbObject:aco];
@@ -387,7 +387,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     
     [[_bcClient authenticationService] authenticateGoogle:userID
                                                     token:token
-                                              forceCreate:YES
+                                              forceCreate:forceCreate
                                           completionBlock:self.authSuccessCompletionBlock
                                      errorCompletionBlock:self.authErrorCompletionBlock
                                                  cbObject:aco];
@@ -410,7 +410,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     
     [[_bcClient authenticationService] authenticateSteam:userId
                                            sessionTicket:sessionticket
-                                             forceCreate:YES
+                                             forceCreate:forceCreate
                                          completionBlock:self.authSuccessCompletionBlock
                                     errorCompletionBlock:self.authErrorCompletionBlock
                                                 cbObject:aco];
@@ -434,7 +434,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     [[_bcClient authenticationService] authenticateTwitter:userId
                                                      token:token
                                                     secret:secret
-                                               forceCreate:YES
+                                               forceCreate:forceCreate
                                            completionBlock:self.authSuccessCompletionBlock
                                       errorCompletionBlock:self.authErrorCompletionBlock
                                                   cbObject:aco];
@@ -766,7 +766,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
     [_bcClient runCallBacks];
 }
 
-
 #pragma mark - Properties
 
 - (BrainCloudScript *)scriptService
@@ -872,6 +871,21 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 - (BrainCloudTournament *)tournamentService
 {
     return [_bcClient tournamentService];
+}
+
+- (BrainCloudPresence *)presenceService
+{
+    return [_bcClient presenceService];
+}
+
+- (BrainCloudVirtualCurrency *)virtualCurrencyService
+{
+    return [_bcClient virtualCurrencyService];
+}
+
+- (BrainCloudAppStore *)appStoreService
+{
+    return [_bcClient appStoreService];
 }
 
 - (BrainCloudS3Handling *)s3HandlingService

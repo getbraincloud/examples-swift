@@ -143,6 +143,7 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     BrainCloudPlayerStatisticsEvent *_playerStatisticsEventService;
     BrainCloudTime *_timeService;
     BrainCloudTournament *_tournamentService;
+    BrainCloudPresence *_presenceService;
     BrainCloudS3Handling *_s3HandlingService;
     BrainCloudIdentity *_identityService;
     BrainCloudRedemptionCode *_redemptionCodeService;
@@ -150,6 +151,8 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     BrainCloudProfanity *_profanityService;
     BrainCloudFile *_fileService;
     BrainCloudGroup *_groupService;
+    BrainCloudAppStore *_appStoreService;
+    BrainCloudVirtualCurrency * _virtualCurrencyService;
 
 }
 @end
@@ -574,6 +577,24 @@ static BrainCloudClient *s_instance = nil;
 {
     if (!_tournamentService) _tournamentService = [[BrainCloudTournament alloc] init: self];
     return _tournamentService;
+}
+
+- (BrainCloudPresence *)presenceService
+{
+    if(!_presenceService) _presenceService = [[BrainCloudPresence alloc] init: self];
+    return _presenceService;
+}
+
+- (BrainCloudVirtualCurrency *)virtualCurrencyService
+{
+    if (!_virtualCurrencyService) _virtualCurrencyService = [[BrainCloudVirtualCurrency alloc] init: self];
+    return _virtualCurrencyService;
+}
+
+- (BrainCloudAppStore *)appStoreService
+{
+    if(!_appStoreService) _appStoreService = [[BrainCloudAppStore alloc] init: self];
+    return _appStoreService;
 }
 
 - (BrainCloudS3Handling *)s3HandlingService
