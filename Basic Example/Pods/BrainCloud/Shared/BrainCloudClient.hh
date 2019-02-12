@@ -23,6 +23,9 @@
 #import "BrainCloudIdentity.hh"
 #import "BrainCloudLeaderboard.hh"
 #import "BrainCloudMail.hh"
+#import "BrainCloudMessaging.hh"
+#import "BrainCloudLobby.hh"
+#import "BrainCloudChat.hh"
 #import "BrainCloudMatchMaking.hh"
 #import "BrainCloudOneWayMatch.hh"
 #import "BrainCloudPlaybackStream.hh"
@@ -137,6 +140,45 @@
              appId:(NSString *)appId
         appVersion:(NSString *)appVersion;
 
+/**
+ * Method initializes the BrainCloudClient. Automatically uses  current serverURL
+ * https://sharedprod.braincloudservers.com/dispatcherv2
+ *
+ * @param secretKey The secret key for your app
+ * @param appId The app id
+ * @param appVersion The version
+ */
+
+- (void)initialize:(NSString *)secretKey
+             appId:(NSString *)appId
+        appVersion:(NSString *)appVersion;
+
+/**
+* Method initializes the BrainCloudClient with a map of appid->secretkey
+*
+* @param serverURL The url to the brainCloud server
+* @param defaultAppId The default app id to start with
+* @param secretMap All app ids to secret keys used by this application
+* @param appVersion The version
+*/
+
+- (void)initializeWithApps:(NSString *)serverURL
+              defaultAppId:(NSString *)defaultAppId
+                 secretMap:(NSDictionary *)secretMap
+                appVersion:(NSString *)appVersion;
+
+/**
+ * Method initializes the BrainCloudClient with a map of appid->secretkey
+ * Automatically uses current serverURL https://sharedprod.braincloudservers.com/dispatcherv2
+ *
+ * @param defaultAppId The default app id to start with
+ * @param secretMap All app ids to secret keys used by this application
+ * @param appVersion The version
+ */
+
+- (void)initializeWithApps:(NSString *)defaultAppId
+                 secretMap:(NSDictionary *)secretMap
+                appVersion:(NSString *)appVersion;
 
 /**
 * Initialize - initializes the identity service with the saved
@@ -455,6 +497,9 @@
 @property(readonly) BrainCloudGlobalApp *globalAppService;
 @property(readonly) BrainCloudFriend *friendService;
 @property(readonly) BrainCloudMail *mailService;
+@property(readonly) BrainCloudMessaging *messagingService;
+@property(readonly) BrainCloudLobby *lobbyService;
+@property(readonly) BrainCloudChat *chatService;
 @property(readonly) BrainCloudMatchMaking *matchMakingService;
 @property(readonly) BrainCloudAsyncMatch *asyncMatchService;
 @property(readonly) BrainCloudOneWayMatch *oneWayMatchService;

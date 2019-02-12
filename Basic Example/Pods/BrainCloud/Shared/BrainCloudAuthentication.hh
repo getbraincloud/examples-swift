@@ -236,6 +236,24 @@ extern NSString *const AUTH_FACEBOOK;
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 
+/*
+ * Authenticate the user using a handoffId and authentication token
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param handoffId
+ * @param securityToken The authentication token
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)authenticateHandoff:(NSString *)handoffId
+              securityToken:(NSString *)securityToken
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
 /**
 * Reset Email password - Sends a password reset email to the specified address
 *

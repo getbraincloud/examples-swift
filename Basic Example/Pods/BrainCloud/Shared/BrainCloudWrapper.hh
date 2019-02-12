@@ -108,8 +108,24 @@
        companyName:(NSString *)companyName
            appName:(NSString *)appName;
 
-
-
+/**
+ * Method initializes the BrainCloudClient with a map of appid->secretkey
+ *
+ * @param serverUrl The url to the brainCloud server
+ * @param defaultAppId The app id
+ * @param secretMap All app ids to secret keys used by this application
+ * @param appVersion The version
+ * @param companyName The company name used in the keychain for storing anonymous and profile ids.
+ * You are free to pick anything you want.
+ * @param appName The app name used in teh keychain for storing anonymous and profile ids.
+ * You are free to pick anything you want.
+ */
+- (void)initializeWithApps:(NSString *)serverURL
+              defaultAppId:(NSString *)defaultAppId
+                 secretMap:(NSDictionary *)secretMap
+                appVersion:(NSString *)appVersion
+               companyName:(NSString *)companyName
+                   appName:(NSString *)appName;
 
 /**
  * Authenticate a user anonymously with brainCloud - used for apps that don't want to bother
@@ -552,6 +568,9 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 @property(readonly) BrainCloudGlobalApp *globalAppService;
 @property(readonly) BrainCloudFriend *friendService;
 @property(readonly) BrainCloudMail *mailService;
+@property(readonly) BrainCloudMessaging *messagingService;
+@property(readonly) BrainCloudLobby *lobbyService;
+@property(readonly) BrainCloudChat *chatService;
 @property(readonly) BrainCloudMatchMaking *matchMakingService;
 @property(readonly) BrainCloudAsyncMatch *asyncMatchService;
 @property(readonly) BrainCloudOneWayMatch *oneWayMatchService;
