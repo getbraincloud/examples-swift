@@ -21,6 +21,7 @@
 + (AuthenticationTypeObjc *) Google;
 + (AuthenticationTypeObjc *) Twitter;
 + (AuthenticationTypeObjc *) Parse;
++ (AuthenticationTypeObjc *) Handoff;
 + (AuthenticationTypeObjc *) External;
 + (AuthenticationTypeObjc *) Unknown;
 

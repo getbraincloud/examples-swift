@@ -230,6 +230,25 @@ static BrainCloudWrapper *sharedWrapper = nil;
     self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName appName:appName];
 }
 
+- (void)initializeWithApps:(NSString *)serverUrl
+              defaultAppId:(NSString *)defaultAppId
+                 secretMap:(NSDictionary *)secretMap
+                appVersion:(NSString *)appVersion
+               companyName:(NSString *)companyName
+                   appName:(NSString *)appName;
+{
+    self.lastAppId       = defaultAppId;
+    self.lastAppVersion  = appVersion;
+    self.lastSecretKey   = [secretMap objectForKey:defaultAppId];
+    self.lastServerUrl   = serverUrl;
+
+    [_bcClient initializeWithApps:serverUrl
+                     defaultAppId:defaultAppId
+                        secretMap:secretMap
+                       appVersion:appVersion];
+        
+    self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName appName:appName];
+}
 
 - (void)_initializeIdentity:(BOOL) isAnonymousAuth
 {
@@ -826,6 +845,21 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 - (BrainCloudMail *)mailService
 {
     return [_bcClient mailService];
+}
+
+- (BrainCloudMessaging*)messagingService
+{
+    return [_bcClient messagingService];
+}
+
+- (BrainCloudLobby*)lobbyService
+{
+    return [_bcClient lobbyService];
+}
+
+- (BrainCloudChat*)chatService
+{
+    return [_bcClient chatService];
 }
 
 - (BrainCloudMatchMaking *)matchMakingService

@@ -1,7 +1,7 @@
 PODS:
-  - BrainCloud (3.9.0):
-    - BrainCloudCpp (= 3.9.0)
-  - BrainCloudCpp (3.9.0):
+  - BrainCloud (3.10.0):
+    - BrainCloudCpp (= 3.10.0)
+  - BrainCloudCpp (3.10.0):
     - BrainCloudJsonCpp
     - SocketRocket (~> 0.5)
     - SSKeychain
@@ -21,8 +21,8 @@ SPEC REPOS:
     - SSKeychain
 
 SPEC CHECKSUMS:
-  BrainCloud: 620097e63e14119794e38aa5612f41d3ce665237
-  BrainCloudCpp: 70d4b83134298f20bdf015dde857fef1f34519b7
+  BrainCloud: 517745ff28a9557dfdabdc98ae7d39303dbe037a
+  BrainCloudCpp: 69cbb68554dfedfe287f46a6f235d2f1db3ce11f
   BrainCloudJsonCpp: 668a2cef2109fc8effbc473716d1f3d42f1fd346
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41

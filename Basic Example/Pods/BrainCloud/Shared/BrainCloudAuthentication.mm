@@ -183,6 +183,16 @@
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)authenticateHandoff:(NSString *)handoffId
+              securityToken:(NSString *)securityToken
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+    _client->getAuthenticationService()->authenticateHandoff(
+        [handoffId UTF8String], [securityToken UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)resetEmailPassword:(NSString *)email
        withCompletionBlock:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
