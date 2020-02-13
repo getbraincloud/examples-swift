@@ -1,6 +1,0 @@
-framework module json {
-  umbrella header "BrainCloudJsonCpp-umbrella.h"
-
-  export *
-  module * { export * }
-}
