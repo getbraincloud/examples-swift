@@ -1,6 +1,0 @@
-framework module BrainCloud {
-  umbrella header "BrainCloud-umbrella.h"
-
-  export *
-  module * { export * }
-}
