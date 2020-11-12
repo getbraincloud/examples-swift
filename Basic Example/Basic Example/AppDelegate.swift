@@ -51,10 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         AppDelegate._bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
                                    secretKey: "921d9acc-e286-4b37-91b6-a394f4e6ff4f",    // Replace the Secret and
-            gameId: "12049",                                      // AppId with the one on the dashboard
-            gameVersion: "1.0.0",
-            companyName: "brainCloud",
-            gameName: "Basic - Swift")
+                                   appId: "12049",                                      // AppId with the one on the dashboard
+                                   appVersion: "1.0.0",
+                                   companyName: "brainCloud",
+                                   appName: "Basic - Swift")
         
         
         let center = UNUserNotificationCenter.current()
