@@ -16,3 +16,14 @@ This is Swift example demonstrates the following:
 - Push Notifications
 
 ![Basic](screenshots/Basic.png?raw=true "Basic")
+
+### M1 pod installation issue
+If you're having issues while installing pod dependencies on an M1 mac, please try the following:
+```shell
+# Install ffi
+sudo arch -x86_64
+gem install ffi
+
+# Re-install dependencies
+arch -x86_64 pod install
+```
