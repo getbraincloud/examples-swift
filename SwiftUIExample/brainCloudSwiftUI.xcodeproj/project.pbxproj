@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03FB584206A2BA93C5710372 /* Pods_brainCloudSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F618DD106313A81A152F41 /* Pods_brainCloudSwiftUI.framework */; };
 		80C4E76426D87A54000E0B71 /* brainCloudSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E76326D87A54000E0B71 /* brainCloudSwiftUIApp.swift */; };
 		80C4E76626D87A54000E0B71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E76526D87A54000E0B71 /* ContentView.swift */; };
 		80C4E76826D87A55000E0B71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C4E76726D87A55000E0B71 /* Assets.xcassets */; };
@@ -14,11 +15,10 @@
 		80C4E77626D87B47000E0B71 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E77426D87B46000E0B71 /* DetailView.swift */; };
 		80C4E77726D87B47000E0B71 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E77526D87B46000E0B71 /* WebView.swift */; };
 		80C4E77B26D87B76000E0B71 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E77926D87B76000E0B71 /* PostData.swift */; };
-		BE75422E098EF8098BA572E6 /* Pods_brainCloudSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA872373645C71A3368E93F /* Pods_brainCloudSwiftUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0AA872373645C71A3368E93F /* Pods_brainCloudSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_brainCloudSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77A18711DB54482274EB96E5 /* Pods-brainCloudSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brainCloudSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-brainCloudSwiftUI/Pods-brainCloudSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		80C4E76026D87A54000E0B71 /* brainCloudSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = brainCloudSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C4E76326D87A54000E0B71 /* brainCloudSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = brainCloudSwiftUIApp.swift; sourceTree = "<group>"; };
 		80C4E76526D87A54000E0B71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -28,8 +28,8 @@
 		80C4E77426D87B46000E0B71 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		80C4E77526D87B46000E0B71 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		80C4E77926D87B76000E0B71 /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
-		A857CBB10E27C7376202F5A2 /* Pods-brainCloudSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brainCloudSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-brainCloudSwiftUI/Pods-brainCloudSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
-		C89BD6F4AD1F8712ADBFEA1C /* Pods-brainCloudSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brainCloudSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-brainCloudSwiftUI/Pods-brainCloudSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		A8F618DD106313A81A152F41 /* Pods_brainCloudSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_brainCloudSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2C1C8B83E7B2368FBAAA723 /* Pods-brainCloudSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brainCloudSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-brainCloudSwiftUI/Pods-brainCloudSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,21 +37,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE75422E098EF8098BA572E6 /* Pods_brainCloudSwiftUI.framework in Frameworks */,
+				03FB584206A2BA93C5710372 /* Pods_brainCloudSwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6C5212EDFEEE82ABF6E46DEE /* Pods */ = {
+		5BD34D172BE09961758B893D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A857CBB10E27C7376202F5A2 /* Pods-brainCloudSwiftUI.debug.xcconfig */,
-				C89BD6F4AD1F8712ADBFEA1C /* Pods-brainCloudSwiftUI.release.xcconfig */,
+				A8F618DD106313A81A152F41 /* Pods_brainCloudSwiftUI.framework */,
 			);
-			name = Pods;
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		80C4E75726D87A54000E0B71 = {
@@ -59,8 +57,8 @@
 			children = (
 				80C4E76226D87A54000E0B71 /* brainCloudSwiftUI */,
 				80C4E76126D87A54000E0B71 /* Products */,
-				6C5212EDFEEE82ABF6E46DEE /* Pods */,
-				D134B87E8E6B20AA9C1D6703 /* Frameworks */,
+				C1B5EE37E7731D6007ADC31C /* Pods */,
+				5BD34D172BE09961758B893D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,12 +109,14 @@
 			path = Moudles;
 			sourceTree = "<group>";
 		};
-		D134B87E8E6B20AA9C1D6703 /* Frameworks */ = {
+		C1B5EE37E7731D6007ADC31C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0AA872373645C71A3368E93F /* Pods_brainCloudSwiftUI.framework */,
+				77A18711DB54482274EB96E5 /* Pods-brainCloudSwiftUI.debug.xcconfig */,
+				F2C1C8B83E7B2368FBAAA723 /* Pods-brainCloudSwiftUI.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,11 +126,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80C4E76F26D87A55000E0B71 /* Build configuration list for PBXNativeTarget "brainCloudSwiftUI" */;
 			buildPhases = (
-				ADE897CFA89B42B804903559 /* [CP] Check Pods Manifest.lock */,
+				1FA33E83F6B821FC17B8EA25 /* [CP] Check Pods Manifest.lock */,
 				80C4E75C26D87A54000E0B71 /* Sources */,
 				80C4E75D26D87A54000E0B71 /* Frameworks */,
 				80C4E75E26D87A54000E0B71 /* Resources */,
-				D59713D32E5E6F303FBF2383 /* [CP] Embed Pods Frameworks */,
+				FB008D5A31BAC6A1D1DBE200 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,7 +186,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		ADE897CFA89B42B804903559 /* [CP] Check Pods Manifest.lock */ = {
+		1FA33E83F6B821FC17B8EA25 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,7 +208,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D59713D32E5E6F303FBF2383 /* [CP] Embed Pods Frameworks */ = {
+		FB008D5A31BAC6A1D1DBE200 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,7 +361,7 @@
 		};
 		80C4E77026D87A55000E0B71 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A857CBB10E27C7376202F5A2 /* Pods-brainCloudSwiftUI.debug.xcconfig */;
+			baseConfigurationReference = 77A18711DB54482274EB96E5 /* Pods-brainCloudSwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -384,7 +384,7 @@
 		};
 		80C4E77126D87A55000E0B71 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C89BD6F4AD1F8712ADBFEA1C /* Pods-brainCloudSwiftUI.release.xcconfig */;
+			baseConfigurationReference = F2C1C8B83E7B2368FBAAA723 /* Pods-brainCloudSwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
