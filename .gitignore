@@ -1,2 +1,5 @@
 .DS_Store
 Pods/
+UserInterfaceState.xcuserstate
+xcschememanagement.plist
+Podfile.lock
