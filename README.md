@@ -17,6 +17,25 @@ This is Swift example demonstrates the following:
 
 ![Basic](screenshots/Basic.png?raw=true "Basic")
 
+## Setup
+
+Edit the Info.plist with the App ID and Secret Key or edit the initialize call in AppDelegate.swift source code.
+eg.
+
+```
+plutil -replace BCAppId -string "xxxxx" Basic\ Example/Basic\ Example/Info.plist
+plutil -replace BCSecretKey -string "yyyyy" Basic\ Example/Basic\ Example/Info.plist
+plutil -replace BCServerUrl -string "https://api.braincloudservers.com/dispatcherV2" Basic\ Example/Basic\ Example/Info.plist
+```
+
+```         AppDelegate._bc.initialize("https://api.braincloudservers.com/dispatcherv2",
+         secretKey: YOUR_SECRET,
+         gameId: YOUR_APPID,
+         gameVersion: "1.0.0",
+         companyName: YOUR_COMPANY,
+         gameName: YOUR_GAME_NAME)
+```
+
 ## SwiftUI Example
 
 This is SwiftUI example demonstrates the following:

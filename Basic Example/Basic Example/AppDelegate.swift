@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
          // We need to change YOUR_SECRET and YOUR_APPID to match what is on the brainCloud dashboard.
          // See the readme for more info: https://github.com/getbraincloud/braincloud-objc/blob/master/README.md
          
-         AppDelegate._bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
+         AppDelegate._bc.initialize("https://api.braincloudservers.com/dispatcherv2",
          secretKey: YOUR_SECRET,
          gameId: YOUR_APPID,
          gameVersion: "1.0.0",
@@ -49,19 +49,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         AppDelegate._bc.getBCClient().enableLogging(true)
         
-        // Internal
-        // AppDelegate._bc.initialize("https://internal.braincloudservers.com/dispatcherv2",
-        //                            secretKey: "e4d2f224-739a-4f16-a18a-ae1bd433b095",    // Replace the Secret and
-        //                            appId: "24394",                                      // AppId with the one on the dashboard
-        //                            appVersion: "1.0.0",
-        //                            companyName: "brainCloud",
-        //                            appName: "Basic - Swift")
-        
-        // Prod
-        AppDelegate._bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
-                                   secretKey: "921d9acc-e286-4b37-91b6-a394f4e6ff4f",    // Replace the Secret and
-                                   appId: "12049",                                      // AppId with the one on the dashboard
-                                   appVersion: "4.9.0",
+        // read YOUR_SECRET and YOUR_APPID from info.plist
+        var config: [String: Any]?
+                
+        if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
+            do {
+                let infoPlistData = try Data(contentsOf: infoPlistPath)
+                
+                if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
+                    config = dict
+                }
+            } catch {
+                print(error)
+            }
+        }
+
+        AppDelegate._bc.initialize(config?["BCServerUrl"] as? String,
+                                   secretKey: config?["BCSecretKey"] as? String, // Replace the Secret and
+                                   appId: config?["BCAppId"] as? String, // AppId with the one on the dashboard
+                                   appVersion: "4.13.0",
                                    companyName: "brainCloud",
                                    appName: "Basic - Swift")
         

@@ -366,7 +366,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"brainCloudSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 6LWYQSX35S;
+				DEVELOPMENT_TEAM = 3HU3N8Z2U7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = brainCloudSwiftUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -374,7 +374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.siliconhanna.brainCloudSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitheads.brainCloudSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -389,7 +389,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"brainCloudSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 6LWYQSX35S;
+				DEVELOPMENT_TEAM = 3HU3N8Z2U7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = brainCloudSwiftUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -397,7 +397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.siliconhanna.brainCloudSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitheads.brainCloudSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
