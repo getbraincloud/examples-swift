@@ -29,9 +29,23 @@ struct ContentView: View {
                         }).simultaneousGesture(TapGesture().onEnded{
                             switch item.id {
                             case "1":
-                                _bc.initialize("https://sharedprod.braincloudservers.com/dispatcherv2",
-                                               secretKey: "your app secret",
-                                               appId: "13229",
+                                // read YOUR_SECRET and YOUR_APPID from info.plist
+                                var config: [String: Any]?
+                                        
+                                if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
+                                    do {
+                                        let infoPlistData = try Data(contentsOf: infoPlistPath)
+                                        
+                                        if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
+                                            config = dict
+                                        }
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
+                                _bc.initialize(config?["BCServerUrl"] as? String,
+                                               secretKey: config?["BCSecretKey"] as? String,
+                                               appId: config?["BCAppId"] as? String,
                                                appVersion: "2.0.0",
                                                companyName: "brainCloud",
                                                appName: "TestJ")

@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BCAppId</key>
+	<string></string>
+	<key>BCSecretKey</key>
+	<string></string>
+	<key>BCServerUrl</key>
+	<string>https://api.braincloudservers.com/dispatcherV2</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

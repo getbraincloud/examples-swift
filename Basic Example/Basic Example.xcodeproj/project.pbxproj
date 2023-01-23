@@ -242,7 +242,7 @@
 				TargetAttributes = {
 					C9B20071212338CE0096EF29 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = "";
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -251,12 +251,12 @@
 					};
 					C9B20085212338CE0096EF29 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = "";
 						TestTargetID = C9B20071212338CE0096EF29;
 					};
 					C9B20090212338CE0096EF29 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = "";
 						TestTargetID = C9B20071212338CE0096EF29;
 					};
 				};
