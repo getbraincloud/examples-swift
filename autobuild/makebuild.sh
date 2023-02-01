@@ -15,7 +15,9 @@ SCHEME=${PROJECTNAME}
 # from list
 DEVICE=${3}
 # from xcode
-BUNDLE=${4}
+BUNDLE=$(echo "${PROJECTNAME}" |  sed 's/ //g')
+
+
 SDK='iphoneos16.2'
 
 if  [ ${1} == -list ]
