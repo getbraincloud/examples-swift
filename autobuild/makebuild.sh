@@ -8,16 +8,14 @@
 # ../autobuild/makebuild.sh -run  "brainCloudSwiftUI" 5DF2472F-B32F-4636-9993-4563E0979EDD com.bitheads.brainCloudSwiftUI
 # ../autobuild/makebuild.sh -pack  "brainCloudSwiftUI" 
 
-# xcworkspace 
+# xcworkspace matches bundle name
 PROJECTNAME=${2}
-# from xcode
+# from xcode project
 SCHEME=${PROJECTNAME}
 # from list
 DEVICE=${3}
-# from xcode
-BUNDLE=$(echo "${PROJECTNAME}" |  sed 's/ //g')
-
-
+# from xcode project
+BUNDLE=com.bitheads.$(echo "${PROJECTNAME}" |  sed 's/ //g')
 SDK='iphoneos16.2'
 
 if  [ ${1} == -list ]
@@ -28,6 +26,8 @@ else if  [ ${1} == -run ]
 then
 	# eg. to run in simulator
 	xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=${DEVICE}" SYMROOT="${WORKSPACE}/Build/"
+	xcrun simctl shutdown ${DEVICE}
+	xcrun simctl erase ${DEVICE}
 	xcrun simctl boot ${DEVICE}
 	xcrun simctl install ${DEVICE} "${WORKSPACE}/Build/Debug-iphonesimulator/${PROJECTNAME}.app"
 	xcrun simctl launch ${DEVICE} "${BUNDLE}"
