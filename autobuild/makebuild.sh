@@ -3,9 +3,9 @@
 # do this iin root folder > export WORKSPACE=$PWD
 #Eg Usage:
 # ../autobuild/makebuild.sh -list
-# ../autobuild/makebuild.sh -run "Basic Example" C39E0F97-9DA6-41D0-9A95-76A8544BE7CD com.bitheads.Example-Basic
+# ../autobuild/makebuild.sh -run "Basic Example" C39E0F97-9DA6-41D0-9A95-76A8544BE7CD
 # ../autobuild/makebuild.sh -pack "Basic Example"
-# ../autobuild/makebuild.sh -run  "brainCloudSwiftUI" 5DF2472F-B32F-4636-9993-4563E0979EDD com.bitheads.brainCloudSwiftUI
+# ../autobuild/makebuild.sh -run  "brainCloudSwiftUI" 5DF2472F-B32F-4636-9993-4563E0979EDD
 # ../autobuild/makebuild.sh -pack  "brainCloudSwiftUI" 
 
 # xcworkspace matches bundle name
@@ -35,7 +35,7 @@ else if  [ ${1} == -pack ]
 then
 	# to generate .ipa package for ios deployment
 	xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}"  -sdk ${SDK}  -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" archive
-	xcodebuild -exportArchive -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" -exportPath "${WORKSPACE}/Build/${PROJECTNAME}Export" -allowProvisioningUpdates -exportOptionsPlist "./ExportOptions.plist"
+	xcodebuild -exportArchive -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" -exportPath "${WORKSPACE}/Build/${PROJECTNAME}-Export" -allowProvisioningUpdates -exportOptionsPlist "./ExportOptions.plist"
 else
 	echo Choose -list, -run or -pack.
 fi
