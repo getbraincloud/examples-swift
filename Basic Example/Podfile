@@ -10,7 +10,7 @@ target 'Basic Example' do
   elsif ENV['PODSOURCE'] == "HOME" then
     pod 'BrainCloud', :path => '~/git/braincloud-objc/'
   else
-  pod 'BrainCloud', '4.13.2'
+    pod 'BrainCloud', '4.14.0'
   end
 
   # Pods for Basic Example

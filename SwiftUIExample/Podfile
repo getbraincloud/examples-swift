@@ -6,5 +6,5 @@ target 'brainCloudSwiftUI' do
   use_frameworks!
 
   # Pods for brainCloudSwiftUI
-  pod 'BrainCloud', '4.13.2'
+  pod 'BrainCloud', '4.14.0'
 end
