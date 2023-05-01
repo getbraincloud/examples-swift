@@ -7,11 +7,11 @@ target 'Basic Example' do
 
   if ENV['PODSOURCE'] == "JENKINS" then
     pod 'BrainCloud', :path => '../braincloud-objc/'
-    #pod 'BrainCloudCpp', :path => '../braincloud-objc/braincloud-cpp/'
   elsif ENV['PODSOURCE'] == "HOME" then
     pod 'BrainCloud', :path => '~/git/braincloud-objc/'
   else
-    pod 'BrainCloud', '4.14.1'
+    pod 'BrainCloud', '4.14.0'
+    pod 'GoogleSignIn'
   end
 
   # Pods for Basic Example
@@ -32,12 +32,8 @@ post_install do |installer|
     installer.generated_projects.each do |project|
           project.targets.each do |target|
               target.build_configurations.each do |config|
-                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
-                config.build_settings['WATCHOS_DEPLOYMENT_TARGET'] = '4.0'
-                config.build_settings['TVOS_DEPLOYMENT_TARGET'] = '11.0'
-                config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '10.13'
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
                end
           end
    end
 end
-
