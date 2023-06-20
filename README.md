@@ -11,13 +11,14 @@ Find our latest releases of our ObjC client library [here](https://github.com/ge
 This is Swift example demonstrates the following:
 
 - brainCloud Setup
-- Authentication
+- Authentication with Email/Password and Google OpenId
 - Entities
 - Push Notifications
+- Simple Relay Setup
 
 ![Basic](screenshots/Basic.png?raw=true "Basic")
 
-## Setup
+### Basic example Setup
 
 Edit the Info.plist with the App ID and Secret Key or edit the initialize call in AppDelegate.swift source code.
 eg.
@@ -28,7 +29,8 @@ plutil -replace BCSecretKey -string "yyyyy" Basic\ Example/Basic\ Example/Info.p
 plutil -replace BCServerUrl -string "https://api.braincloudservers.com/dispatcherV2" Basic\ Example/Basic\ Example/Info.plist
 ```
 
-```         AppDelegate._bc.initialize("https://api.braincloudservers.com/dispatcherv2",
+```
+AppDelegate._bc.initialize("https://api.braincloudservers.com/dispatcherv2",
          secretKey: YOUR_SECRET,
          gameId: YOUR_APPID,
          gameVersion: "1.0.0",
@@ -46,6 +48,33 @@ This is SwiftUI example demonstrates the following:
 
 ![SwiftUIe2](screenshots/SwiftUI2.png?raw=true "SwiftUIe2")
 ![SwiftUIe1](screenshots/SwiftUI1.png?raw=true "SwiftUIe1")
+
+
+## bcChat Example
+
+This is Swift example demonstrates the following brainCloud features:
+
+- Authentication with Email/Password and AuthenticateApple
+- Apple In-app purchase with brainCloud product setup and verify purchase
+- brainCloud RTT chat feature
+
+![bcChat1](screenshots/bcChat1.png?raw=true "bcChat1")
+![bcChat2](screenshots/bcChat2.png?raw=true "bcChat2")
+
+### bcChat setup
+
+Create a `config-dev.xcconfig` file under `Resources` folder, set the following values inside this config file respectively.
+
+```
+serverUrl = https:/$()/api.braincloudservers.com/dispatcherV2
+secretKey = brainCloud app secretKey
+appId = brainCloud appId
+appVersion = 1.0.0
+companyName = your company name
+appName = brainCloud app name
+```
+
+Optional: From your apple developer account set up In-app purchase and sign in apple capabilities to your app if your want to test apple IAP and apple signIn.
 
 ### M1 pod installation issue
 If you're having issues while installing pod dependencies on an M1 mac, please try the following:
