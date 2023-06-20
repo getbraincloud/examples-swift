@@ -63,7 +63,9 @@ This is Swift example demonstrates the following brainCloud features:
 
 ### bcChat setup
 
-Create a `config-dev.xcconfig` file under `Resources` folder, set the following values inside this config file respectively.
+- Install pods with the PodFile that under `bcChat Example` folder.
+
+- Create a `config-dev.xcconfig` file under `Resources` folder, set the following values inside this config file respectively.
 
 ```
 serverUrl = https:/$()/api.braincloudservers.com/dispatcherV2
@@ -74,7 +76,7 @@ companyName = your company name
 appName = brainCloud app name
 ```
 
-Optional: From your apple developer account set up In-app purchase and sign in apple capabilities to your app if your want to test apple IAP and apple signIn.
+- Optional: From your apple developer account set up In-app purchase and sign in apple capabilities to your app if your want to test apple IAP and apple signIn.
 
 ### M1 pod installation issue
 If you're having issues while installing pod dependencies on an M1 mac, please try the following:
