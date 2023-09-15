@@ -1,21 +1,24 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '11.0'
+ platform :ios, '12.0'
 
 target 'Basic Example' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  if ENV['PODSOURCE'] == "JENKINS" then
-    pod 'BrainCloud', :path => '../braincloud-objc/'
-  elsif ENV['PODSOURCE'] == "HOME" then
-    pod 'BrainCloud', :path => '~/git/braincloud-objc/'
-  else
-    pod 'BrainCloud', '4.14.0'
-    pod 'GoogleSignIn'
+  if ENV['PODSOURCE'] == "" then
+        pod 'BrainCloud'
+        pod 'BrainCloudCpp'
+        pod 'BrainCloudJsonCpp'
+    else
+        pod 'BrainCloud', :path => ENV['PODSOURCE'] 
+        pod 'BrainCloudCpp', :path => ENV['CPPSOURCE'] 
+        pod 'BrainCloudJsonCpp', :path => ENV['JSONSOURCE'] 
   end
 
-  # Pods for Basic Example
 
+  # Pods for Basic Example
+  pod 'GoogleSignIn'
+    
   target 'Basic ExampleTests' do
     inherit! :search_paths
     # Pods for testing
@@ -25,15 +28,25 @@ target 'Basic Example' do
     inherit! :search_paths
     # Pods for testing
   end
-
 end
-
+  
 post_install do |installer|
-    installer.generated_projects.each do |project|
-          project.targets.each do |target|
-              target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+   installer.generated_projects.each do |project|
+         project.targets.each do |target|
+             target.build_configurations.each do |config|
+               if Gem::Version.new('11.0') > Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+                 config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
                end
-          end
-   end
+               if Gem::Version.new('4.0') > Gem::Version.new(config.build_settings['WATCHOS_DEPLOYMENT_TARGET'])
+                 config.build_settings['WATCHOS_DEPLOYMENT_TARGET'] = '4.0'
+               end
+               if Gem::Version.new('11.0') > Gem::Version.new(config.build_settings['TVOS_DEPLOYMENT_TARGET'])
+                 config.build_settings['TVOS_DEPLOYMENT_TARGET'] = '11.0'
+               end
+               if Gem::Version.new('10.13') > Gem::Version.new(config.build_settings['MACOSX_DEPLOYMENT_TARGET'])
+                 config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '10.13'
+               end
+             end
+         end
+ end
 end
