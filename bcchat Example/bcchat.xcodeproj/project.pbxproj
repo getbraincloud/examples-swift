@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37089B7BCA9582D486D8ABEF /* Pods_bcchat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445F5EA530D7E26A71E80724 /* Pods_bcchat.framework */; };
 		808EAE922A32BE6100DB3D66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE912A32BE6100DB3D66 /* AppDelegate.swift */; };
 		808EAE942A32BE6100DB3D66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE932A32BE6100DB3D66 /* SceneDelegate.swift */; };
 		808EAE992A32BE6100DB3D66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EAE972A32BE6100DB3D66 /* Main.storyboard */; };
@@ -25,13 +26,12 @@
 		808EAEC22A38C6AF00DB3D66 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808EAEC12A38C6AF00DB3D66 /* StoreKit.framework */; };
 		80E92EFC2A3DEA96006FF912 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E92EFB2A3DEA96006FF912 /* KeychainItem.swift */; };
 		80E92EFE2A3E072E006FF912 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E92EFD2A3E072E006FF912 /* RegisterViewController.swift */; };
-		DF154068AB5596212FD286D7 /* Pods_bcchat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186CBD801322B274ABCE5758 /* Pods_bcchat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		186CBD801322B274ABCE5758 /* Pods_bcchat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bcchat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		29AC84793CF6B557DE3BE856 /* Pods-bcchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bcchat.release.xcconfig"; path = "Target Support Files/Pods-bcchat/Pods-bcchat.release.xcconfig"; sourceTree = "<group>"; };
-		6538152A630103057FF72EFE /* Pods-bcchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bcchat.debug.xcconfig"; path = "Target Support Files/Pods-bcchat/Pods-bcchat.debug.xcconfig"; sourceTree = "<group>"; };
+		12EC86894AD2B91AFCBCA876 /* Pods-bcchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bcchat.release.xcconfig"; path = "Target Support Files/Pods-bcchat/Pods-bcchat.release.xcconfig"; sourceTree = "<group>"; };
+		3C0D15104486EE9AE9960E6A /* Pods-bcchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bcchat.debug.xcconfig"; path = "Target Support Files/Pods-bcchat/Pods-bcchat.debug.xcconfig"; sourceTree = "<group>"; };
+		445F5EA530D7E26A71E80724 /* Pods_bcchat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bcchat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		808EAE8E2A32BE6100DB3D66 /* bcchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bcchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808EAE912A32BE6100DB3D66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808EAE932A32BE6100DB3D66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		808EAEB72A37F02100DB3D66 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		808EAEB92A37F06100DB3D66 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		808EAEBB2A37F28C00DB3D66 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-dev.xcconfig"; sourceTree = "<group>"; };
+		808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BrainCloudConfig.xcconfig"; sourceTree = "<group>"; };
 		808EAEBE2A381C0300DB3D66 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		808EAEC12A38C6AF00DB3D66 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		808EAEC32A3D0ABF00DB3D66 /* bcchat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bcchat.entitlements; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 				808EAEC22A38C6AF00DB3D66 /* StoreKit.framework in Frameworks */,
 				808EAEAC2A33433C00DB3D66 /* SwipeCellKit in Frameworks */,
 				808EAEA92A32CB4800DB3D66 /* MessageKit in Frameworks */,
-				DF154068AB5596212FD286D7 /* Pods_bcchat.framework in Frameworks */,
+				37089B7BCA9582D486D8ABEF /* Pods_bcchat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +118,7 @@
 				808EAE9A2A32BE6200DB3D66 /* Assets.xcassets */,
 				808EAE912A32BE6100DB3D66 /* AppDelegate.swift */,
 				808EAE932A32BE6100DB3D66 /* SceneDelegate.swift */,
-				808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */,
+				808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */,
 				80E92EFB2A3DEA96006FF912 /* KeychainItem.swift */,
 			);
 			path = Resources;
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				808EAEC12A38C6AF00DB3D66 /* StoreKit.framework */,
-				186CBD801322B274ABCE5758 /* Pods_bcchat.framework */,
+				445F5EA530D7E26A71E80724 /* Pods_bcchat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,8 +156,8 @@
 		EF0D7EFFBDC2174F839018D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6538152A630103057FF72EFE /* Pods-bcchat.debug.xcconfig */,
-				29AC84793CF6B557DE3BE856 /* Pods-bcchat.release.xcconfig */,
+				3C0D15104486EE9AE9960E6A /* Pods-bcchat.debug.xcconfig */,
+				12EC86894AD2B91AFCBCA876 /* Pods-bcchat.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -169,11 +169,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 808EAEA22A32BE6200DB3D66 /* Build configuration list for PBXNativeTarget "bcchat" */;
 			buildPhases = (
-				1632D213D8ECDD292A5E3833 /* [CP] Check Pods Manifest.lock */,
+				33E309F02361CBAC8C4DFE4C /* [CP] Check Pods Manifest.lock */,
 				808EAE8A2A32BE6100DB3D66 /* Sources */,
 				808EAE8B2A32BE6100DB3D66 /* Frameworks */,
 				808EAE8C2A32BE6100DB3D66 /* Resources */,
-				014F74A865BA9446D94638FB /* [CP] Embed Pods Frameworks */,
+				4BA2A975872452CF096C777C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -239,24 +239,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		014F74A865BA9446D94638FB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bcchat/Pods-bcchat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bcchat/Pods-bcchat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bcchat/Pods-bcchat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1632D213D8ECDD292A5E3833 /* [CP] Check Pods Manifest.lock */ = {
+		33E309F02361CBAC8C4DFE4C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,6 +259,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BA2A975872452CF096C777C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bcchat/Pods-bcchat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bcchat/Pods-bcchat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bcchat/Pods-bcchat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -324,7 +324,7 @@
 /* Begin XCBuildConfiguration section */
 		808EAEA02A32BE6200DB3D66 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */;
+			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -385,7 +385,7 @@
 		};
 		808EAEA12A32BE6200DB3D66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */;
+			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -440,14 +440,14 @@
 		};
 		808EAEA32A32BE6200DB3D66 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6538152A630103057FF72EFE /* Pods-bcchat.debug.xcconfig */;
+			baseConfigurationReference = 3C0D15104486EE9AE9960E6A /* Pods-bcchat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bcchat/bcchat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RFBL3P62SY;
+				DEVELOPMENT_TEAM = 3HU3N8Z2U7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bcchat/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = bcChat;
@@ -462,7 +462,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.braincloud.bcchat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitheads.bcchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -475,14 +475,14 @@
 		};
 		808EAEA42A32BE6200DB3D66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29AC84793CF6B557DE3BE856 /* Pods-bcchat.release.xcconfig */;
+			baseConfigurationReference = 12EC86894AD2B91AFCBCA876 /* Pods-bcchat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bcchat/bcchat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RFBL3P62SY;
+				DEVELOPMENT_TEAM = 3HU3N8Z2U7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bcchat/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = bcChat;
@@ -497,7 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.braincloud.bcchat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitheads.bcchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;

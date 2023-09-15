@@ -8,6 +8,12 @@
 # ../autobuild/makebuild.sh -run  "brainCloudSwiftUI" 5DF2472F-B32F-4636-9993-4563E0979EDD
 # ../autobuild/makebuild.sh -pack  "brainCloudSwiftUI" 
 
+if [ -z ${WORKSPACE} ]
+then
+echo 'Please set workspace environment.'
+exit 2
+fi
+
 # xcworkspace matches bundle name
 PROJECTNAME=${2}
 # from xcode project
@@ -16,14 +22,19 @@ SCHEME=${PROJECTNAME}
 DEVICE=${3}
 # from xcode project
 BUNDLE=com.bitheads.$(echo "${PROJECTNAME}" |  sed 's/ //g')
-SDK='iphoneos16.2'
+SDK='iphoneos16.4'
 
 case "$1" in
     -list)
 		xcodebuild -showsdks
+		xcrun xctrace list devices
+		;;
+	-clean)
+		xcodebuild clean		
+		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=$DEVICE" SYMROOT="${WORKSPACE}/Build/"
 		;;
 	-build)
-		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "$DEVICE" SYMROOT="${WORKSPACE}/Build/"
+		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=$DEVICE" SYMROOT="${WORKSPACE}/Build/"
 		;;
  	-run)
 		# eg. to run in simulator
