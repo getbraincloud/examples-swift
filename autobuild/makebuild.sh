@@ -7,6 +7,7 @@
 # ../autobuild/makebuild.sh -pack "Basic Example"
 # ../autobuild/makebuild.sh -run  "brainCloudSwiftUI" 5DF2472F-B32F-4636-9993-4563E0979EDD
 # ../autobuild/makebuild.sh -pack  "brainCloudSwiftUI" 
+# ../autobuild/makebuild.sh -pack  "bcchat" 
 
 if [ -z ${WORKSPACE} ]
 then
@@ -49,6 +50,19 @@ case "$1" in
 		# to generate .ipa package for ios deployment
 		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}"  -sdk ${SDK}  -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" archive
 		xcodebuild -exportArchive -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" -exportPath "${WORKSPACE}/Build/${PROJECTNAME}-Export" -allowProvisioningUpdates -exportOptionsPlist "./ExportOptions.plist"
+		;;
+	-upload)
+		if [ -z "$BRAINCLOUD_TOOLS" ];
+		then
+  			export BRAINCLOUD_TOOLS=~/braincloud-client-master
+		fi
+
+		if ! [ -d "${BRAINCLOUD_TOOLS}/bin" ];
+		then
+		    echo "Error: Can't find brainCloud tools in path ${BRAINCLOUD_TOOLS}"
+    		exit 1
+		fi
+		${BRAINCLOUD_TOOLS}/bin/upload-package.sh "${WORKSPACE}/Build/${PROJECTNAME}-Export/${PROJECTNAME}.ipa"
 		;;
 	 *)
         echo Choose -list, -run or -pack.
