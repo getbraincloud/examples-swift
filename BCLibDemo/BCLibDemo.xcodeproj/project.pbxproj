@@ -343,7 +343,7 @@
 					"$(PROJECT_DIR)/BrainCloud",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/BrainCloud/include\"";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/BrainCloud/BrainCloud.framework/Headers\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -385,7 +385,7 @@
 					"$(PROJECT_DIR)/BrainCloud",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/BrainCloud/include\"";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/BrainCloud/BrainCloud.framework/Headers\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
