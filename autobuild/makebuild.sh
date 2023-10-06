@@ -28,6 +28,7 @@ SCHEME=${PROJECTNAME}
 DEVICE=${3}
 PLATFORM=${3}
 BUILD_CONFIG=Debug
+TEAM_ID=3HU3N8Z2U7
 
 # using xcode project name (remove spaces)
 BUNDLENAME=$(echo "${PROJECTNAME}" |  sed 's/ //g')
