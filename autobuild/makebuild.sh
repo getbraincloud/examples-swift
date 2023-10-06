@@ -14,9 +14,7 @@
 # ../autobuild/makebuild.sh -upload  "Basic Example"
 #     output is: "${WORKSPACE}/Build/Basic Example-Export/Basic Example.ipa"
 
-
-
-if [ -z ${WORKSPACE} ]
+if [ -z "${WORKSPACE}" ];
 then
 echo 'Please set workspace environment.'
 exit 2
@@ -29,9 +27,10 @@ SCHEME=${PROJECTNAME}
 # from list device / available destinations for scheme
 DEVICE=${3}
 PLATFORM=${3}
-# from xcode project
-BUNDLE=com.bitheads.$(echo "${PROJECTNAME}" |  sed 's/ //g')
-SDK='iphoneos16.4'
+BUILD_CONFIG=Debug
+
+# using xcode project name (remove spaces)
+BUNDLENAME=$(echo "${PROJECTNAME}" |  sed 's/ //g')
 
 
 case "$1" in
@@ -42,23 +41,24 @@ case "$1" in
 		;;
 	-clean)
     rm -rf "${WORKSPACE}/Build/"
+    rm -rf "~/Library/Developer/Xcode/DerivedData/$(echo "${PROJECTNAME}" |  sed 's/ /_/g')*"
 		xcodebuild clean
 		;;
 	-build)
-		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "${PLATFORM}" SYMROOT="${WORKSPACE}/Build/" -allowProvisioningUpdates
+		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "${PLATFORM}" -configuration $BUILD_CONFIG DEVELOPMENT_TEAM=$TEAM_ID SYMROOT="${WORKSPACE}/Build/${PROJECTNAME}-Build" -allowProvisioningUpdates
 		;;
  	-run)
 		# eg. to run in simulator
-		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=${DEVICE}" SYMROOT="${WORKSPACE}/Build/"
-		xcrun simctl shutdown ${DEVICE}
-		xcrun simctl erase ${DEVICE}
+		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=${DEVICE}" -configuration $BUILD_CONFIG SYMROOT="${WORKSPACE}/Build/${PROJECTNAME}-Build"
+		#xcrun simctl shutdown ${DEVICE}
+		#xcrun simctl erase ${DEVICE}
 		xcrun simctl boot ${DEVICE}
-		xcrun simctl install ${DEVICE} "${WORKSPACE}/Build/Debug-iphonesimulator/${PROJECTNAME}.app"
-		xcrun simctl launch ${DEVICE} "${BUNDLE}"
+		xcrun simctl install ${DEVICE} "${WORKSPACE}/Build/${PROJECTNAME}-Build/Debug-iphonesimulator/${PROJECTNAME}.app"
+		xcrun simctl launch ${DEVICE} "com.bitheads.${BUNDLENAME}"
 		;;
 	-pack)
 		# to generate .ipa package for ios deployment
-		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}"  -sdk ${SDK} -destination "${PLATFORM}" -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" archive
+		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "${PLATFORM}" DEVELOPMENT_TEAM=$TEAM_ID -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" archive
 		xcodebuild -exportArchive -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" -exportPath "${WORKSPACE}/Build/${PROJECTNAME}-Export" -allowProvisioningUpdates -exportOptionsPlist "./ExportOptions.plist"
 		;;
 	-upload)

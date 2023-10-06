@@ -6,5 +6,6 @@ Podfile.lock
 Build/
 .idea/
 **/xcuserdata/**
+**/BrainCloud.xcframework/**
 
 
