@@ -30,7 +30,7 @@ export TEAM_ID=3HU3N8Z2U7
 ${BRAINCLOUD_TOOLS}/bin/setupexamplesswift.sh $SERVER_ENVIRONMENT 
 ${BRAINCLOUD_TOOLS}/bin/copy-ids.sh -o "bcchat Example/bcchat/Resources" -p bcchat -x xcconfig -s $SERVER_ENVIRONMENT
 
-if [ $1 == "-getlibs" ];
+if [[ $1 == "-getlibs" ]];
 then
   pushd BCLibDemo
   curl -OL https://github.com/getbraincloud/braincloud-objc/releases/download/5.0.1/brainCloudClient_iOS_ObjC_5.0.1.zip
