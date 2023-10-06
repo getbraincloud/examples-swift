@@ -8,8 +8,6 @@
 #import "GameViewController.h"
 #import "Renderer.h"
 
-#define MAX_WAIT_SECS 120
-
 @implementation GameViewController
 {
     MTKView *_view;

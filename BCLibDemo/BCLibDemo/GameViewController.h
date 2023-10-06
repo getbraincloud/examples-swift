@@ -9,7 +9,7 @@
 #import <Metal/Metal.h>
 #import <MetalKit/MetalKit.h>
 #import "Renderer.h"
-#import "BrainCloudWrapper.hh"
+#import <BrainCloud/BrainCloud.h>
 
 // Our iOS view controller
 @interface GameViewController : UIViewController

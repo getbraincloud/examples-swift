@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57A1A7932ACB7F3500F123AF /* BrainCloud.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57D6E8F52AC759D000E7DBAF /* BrainCloud.xcframework */; };
+		57A1A7942ACB7F3500F123AF /* BrainCloud.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57D6E8F52AC759D000E7DBAF /* BrainCloud.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57B434302AC3B0010090799E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4342F2AC3B0010090799E /* AppDelegate.m */; };
 		57B434332AC3B0010090799E /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B434322AC3B0010090799E /* Renderer.m */; };
 		57B434362AC3B0010090799E /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B434352AC3B0010090799E /* GameViewController.m */; };
@@ -15,19 +17,17 @@
 		57B4343E2AC3B0020090799E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B4343D2AC3B0020090799E /* Assets.xcassets */; };
 		57B434412AC3B0020090799E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B4343F2AC3B0020090799E /* LaunchScreen.storyboard */; };
 		57B434432AC3B0020090799E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B434422AC3B0020090799E /* main.m */; };
-		57B434822AC4BA170090799E /* BrainCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B434812AC4BA170090799E /* BrainCloud.framework */; };
-		57B434832AC4BA170090799E /* BrainCloud.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57B434812AC4BA170090799E /* BrainCloud.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57B434862AC501ED0090799E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 57B434852AC501ED0090799E /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		57B434842AC4BA170090799E /* Embed Frameworks */ = {
+		57A1A7952ACB7F3500F123AF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				57B434832AC4BA170090799E /* BrainCloud.framework in Embed Frameworks */,
+				57A1A7942ACB7F3500F123AF /* BrainCloud.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,8 +48,8 @@
 		57B4343D2AC3B0020090799E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57B434402AC3B0020090799E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57B434422AC3B0020090799E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		57B434812AC4BA170090799E /* BrainCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrainCloud.framework; path = BrainCloud/BrainCloud.framework; sourceTree = "<group>"; };
 		57B434852AC501ED0090799E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		57D6E8F52AC759D000E7DBAF /* BrainCloud.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = BrainCloud.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57B434822AC4BA170090799E /* BrainCloud.framework in Frameworks */,
+				57A1A7932ACB7F3500F123AF /* BrainCloud.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 		57B434662AC4A00D0090799E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				57B434812AC4BA170090799E /* BrainCloud.framework */,
+				57D6E8F52AC759D000E7DBAF /* BrainCloud.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,7 +119,7 @@
 				57B434272AC3B0010090799E /* Sources */,
 				57B434282AC3B0010090799E /* Frameworks */,
 				57B434292AC3B0010090799E /* Resources */,
-				57B434842AC4BA170090799E /* Embed Frameworks */,
+				57A1A7952ACB7F3500F123AF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,7 +343,7 @@
 					"$(PROJECT_DIR)/BrainCloud",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/BrainCloud/BrainCloud.framework/Headers\"";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -366,6 +366,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitheads.BCLibDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -385,7 +387,7 @@
 					"$(PROJECT_DIR)/BrainCloud",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/BrainCloud/BrainCloud.framework/Headers\"";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -408,6 +410,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitheads.BCLibDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
