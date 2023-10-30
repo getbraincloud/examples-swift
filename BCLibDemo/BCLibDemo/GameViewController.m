@@ -56,9 +56,9 @@
     // --- Initializing the BrainCloud Wrapper
     m_bcWrapper = [[BrainCloudWrapper alloc] init];
     
-    [m_bcWrapper initialize:@"https://api.braincloudservers.com/dispatcherV2"
-                  secretKey:@""
-                      appId:@""
+    [m_bcWrapper initialize: NSBundle.mainBundle.infoDictionary[@"serverUrl"]
+                  secretKey:NSBundle.mainBundle.infoDictionary[@"secretKey"]
+                      appId:NSBundle.mainBundle.infoDictionary[@"appId"]
                  appVersion:@"1.0"
                 companyName:@"BitHeads"
                     appName:@"HelloBC"];

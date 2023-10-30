@@ -28,9 +28,11 @@ export WORKSPACE=$PWD
 
 ${BRAINCLOUD_TOOLS}/bin/setupexamplesswift.sh $SERVER_ENVIRONMENT 
 ${BRAINCLOUD_TOOLS}/bin/copy-ids.sh -o "bcchat Example/bcchat/Resources" -p bcchat -x xcconfig -s $SERVER_ENVIRONMENT
+${BRAINCLOUD_TOOLS}/bin/copy-ids.sh -o "BCLibDemo/BCLibDemo" -p clientapp -x xcconfig -s $SERVER_ENVIRONMENT
 
-echo "Excluding from worktree now."
+echo "-- No worries, excluding from worktree now."
 git update-index --assume-unchanged "bcchat Example/bcchat/Resources/BrainCloudConfig.xcconfig"
+git update-index --assume-unchanged "BCLibDemo/BCLibDemo/BrainCloudConfig.xcconfig"
 
 if [[ $1 == "-getlibs" ]];
 then

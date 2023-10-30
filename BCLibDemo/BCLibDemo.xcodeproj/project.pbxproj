@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5762687F2AD070750030F7FD /* BrainCloudConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5762687E2AD070750030F7FD /* BrainCloudConfig.xcconfig */; };
 		57A1A7932ACB7F3500F123AF /* BrainCloud.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57D6E8F52AC759D000E7DBAF /* BrainCloud.xcframework */; };
 		57A1A7942ACB7F3500F123AF /* BrainCloud.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57D6E8F52AC759D000E7DBAF /* BrainCloud.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57B434302AC3B0010090799E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4342F2AC3B0010090799E /* AppDelegate.m */; };
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5762687E2AD070750030F7FD /* BrainCloudConfig.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = BrainCloudConfig.xcconfig; sourceTree = "<group>"; };
 		57B4342B2AC3B0010090799E /* BCLibDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCLibDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B4342E2AC3B0010090799E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57B4342F2AC3B0010090799E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		57B4342D2AC3B0010090799E /* BCLibDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5762687E2AD070750030F7FD /* BrainCloudConfig.xcconfig */,
 				57B4342E2AC3B0010090799E /* AppDelegate.h */,
 				57B4342F2AC3B0010090799E /* AppDelegate.m */,
 				57B434312AC3B0010090799E /* Renderer.h */,
@@ -170,6 +173,7 @@
 				57B434412AC3B0020090799E /* LaunchScreen.storyboard in Resources */,
 				57B4343E2AC3B0020090799E /* Assets.xcassets in Resources */,
 				57B434862AC501ED0090799E /* README.md in Resources */,
+				5762687F2AD070750030F7FD /* BrainCloudConfig.xcconfig in Resources */,
 				57B4343C2AC3B0010090799E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +335,7 @@
 		};
 		57B434472AC3B0020090799E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5762687E2AD070750030F7FD /* BrainCloudConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -344,6 +349,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -375,6 +381,7 @@
 		};
 		57B434482AC3B0020090799E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5762687E2AD070750030F7FD /* BrainCloudConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -388,6 +395,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
