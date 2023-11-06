@@ -65,7 +65,7 @@ This is Swift example demonstrates the following brainCloud features:
 
 - Install pods with the PodFile that under `bcChat Example` folder.
 
-- Create a `config-dev.xcconfig` file under `Resources` folder, set the following values inside this config file respectively.
+- Create a `BrainCloudConfig.xcconfig` file under `Resources` folder, set the following values inside this config file respectively.
 
 ```
 serverUrl = https:/$()/api.braincloudservers.com/dispatcherV2

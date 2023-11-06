@@ -1,5 +1,5 @@
 //
-//  Config-dev.xcconfig
+//  BrainCloudConfig.xcconfig
 //  bcchat
 //
 //  Created by Jason Liang on 2023-06-12.
@@ -8,8 +8,8 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 serverUrl = https:/$()/api.braincloudservers.com/dispatcherV2
-secretKey = 
-appId = 
+secretKey =
+appId =
 appVersion = 1.0.0
-companyName = 
-appName = 
+companyName = companyName
+appName = appName

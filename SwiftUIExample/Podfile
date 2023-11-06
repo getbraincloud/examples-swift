@@ -6,7 +6,7 @@ target 'brainCloudSwiftUI' do
   use_frameworks!
 
   # Pods for brainCloudSwiftUI
-  pod 'BrainCloud', '4.14.1'
+  pod 'BrainCloud'
 end
 
 post_install do |installer|

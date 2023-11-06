@@ -16,7 +16,7 @@ if [ "${plistfile}" == "" ]; then
 fi
 
 plutil -replace BCAppId -string "${appid}" "${plistfile}"
-plutil -replace BCSecretKey -string "$secretkey}" "${plistfile}"
+plutil -replace BCSecretKey -string "${secretkey}" "${plistfile}"
 plutil -replace BCServerUrl -string "${serverurl}" "${plistfile}"
 
 echo "-- Updated $plistfile"

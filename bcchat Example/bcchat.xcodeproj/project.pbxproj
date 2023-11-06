@@ -46,7 +46,7 @@
 		808EAEB72A37F02100DB3D66 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		808EAEB92A37F06100DB3D66 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		808EAEBB2A37F28C00DB3D66 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-dev.xcconfig"; sourceTree = "<group>"; };
+		808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BrainCloudConfig.xcconfig"; sourceTree = "<group>"; };
 		808EAEBE2A381C0300DB3D66 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		808EAEC12A38C6AF00DB3D66 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		808EAEC32A3D0ABF00DB3D66 /* bcchat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bcchat.entitlements; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				808EAE9A2A32BE6200DB3D66 /* Assets.xcassets */,
 				808EAE912A32BE6100DB3D66 /* AppDelegate.swift */,
 				808EAE932A32BE6100DB3D66 /* SceneDelegate.swift */,
-				808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */,
+				808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */,
 				80E92EFB2A3DEA96006FF912 /* KeychainItem.swift */,
 			);
 			path = Resources;
@@ -324,7 +324,7 @@
 /* Begin XCBuildConfiguration section */
 		808EAEA02A32BE6200DB3D66 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */;
+			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -385,7 +385,7 @@
 		};
 		808EAEA12A32BE6200DB3D66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* Config-dev.xcconfig */;
+			baseConfigurationReference = 808EAEBD2A380D2800DB3D66 /* BrainCloudConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
