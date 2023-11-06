@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# do this iin root folder > export WORKSPACE=$PWD
+# do this in root folder > export WORKSPACE=$PWD
 #Eg Usage:
-# ../autobuild/makebuild.sh -list
-# ../autobuild/makebuild.sh -run "Basic Example" C39E0F97-9DA6-41D0-9A95-76A8544BE7CD
-# ../autobuild/makebuild.sh -pack "Basic Example"
-# ../autobuild/makebuild.sh -run  "brainCloudSwiftUI" 5DF2472F-B32F-4636-9993-4563E0979EDD
-# ../autobuild/makebuild.sh -pack  "brainCloudSwiftUI" 
-# ../autobuild/makebuild.sh -pack  "bcchat" 
+# ../autobuild/makebuild.sh -list "Basic Example"
 
-if [ -z ${WORKSPACE} ]
+# ../autobuild/makebuild.sh -build bcchat "platform=iOS Simulator,name=iPhone 8 Plus"
+#     or "platform=OS X,arch=arm64", or "generic/platform=iOS", or "id=263BA950-9A09-4A6E-82E9-BFF76D53B3FF"
+#     output is: ${WORKSPACE}/Build/Debug-iphonesimulator/bcchat.app
+
+# ../autobuild/makebuild.sh -run "brainCloudSwiftUI" C39E0F97-9DA6-41D0-9A95-76A8544BE7CD
+
+# ../autobuild/makebuild.sh -pack  "Basic Example"
+# ../autobuild/makebuild.sh -upload  "Basic Example"
+#     output is: "${WORKSPACE}/Build/Basic Example-Export/Basic Example.ipa"
+
+if [ -z "${WORKSPACE}" ];
 then
 echo 'Please set workspace environment.'
 exit 2
@@ -19,36 +24,42 @@ fi
 PROJECTNAME=${2}
 # from xcode project
 SCHEME=${PROJECTNAME}
-# from list
+# from list device / available destinations for scheme
 DEVICE=${3}
-# from xcode project
-BUNDLE=com.bitheads.$(echo "${PROJECTNAME}" |  sed 's/ //g')
-SDK='iphoneos16.4'
+PLATFORM=${3}
+BUILD_CONFIG=Debug
+TEAM_ID=3HU3N8Z2U7
+
+# using xcode project name (remove spaces)
+BUNDLENAME=$(echo "${PROJECTNAME}" |  sed 's/ //g')
+
 
 case "$1" in
     -list)
 		xcodebuild -showsdks
-		xcrun xctrace list devices
+		xcrun simctl list
+		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -showdestinations
 		;;
 	-clean)
-		xcodebuild clean		
-		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=$DEVICE" SYMROOT="${WORKSPACE}/Build/"
+    rm -rf "${WORKSPACE}/Build/"
+    rm -rf "~/Library/Developer/Xcode/DerivedData/$(echo "${PROJECTNAME}" |  sed 's/ /_/g')*"
+		xcodebuild clean
 		;;
 	-build)
-		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=$DEVICE" SYMROOT="${WORKSPACE}/Build/"
+		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "${PLATFORM}" -configuration $BUILD_CONFIG DEVELOPMENT_TEAM=$TEAM_ID SYMROOT="${WORKSPACE}/Build/${PROJECTNAME}-Build" -allowProvisioningUpdates
 		;;
  	-run)
 		# eg. to run in simulator
-		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=${DEVICE}" SYMROOT="${WORKSPACE}/Build/"
-		xcrun simctl shutdown ${DEVICE}
-		xcrun simctl erase ${DEVICE}
+		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=${DEVICE}" -configuration $BUILD_CONFIG SYMROOT="${WORKSPACE}/Build/${PROJECTNAME}-Build"
+		#xcrun simctl shutdown ${DEVICE}
+		#xcrun simctl erase ${DEVICE}
 		xcrun simctl boot ${DEVICE}
-		xcrun simctl install ${DEVICE} "${WORKSPACE}/Build/Debug-iphonesimulator/${PROJECTNAME}.app"
-		xcrun simctl launch ${DEVICE} "${BUNDLE}"
+		xcrun simctl install ${DEVICE} "${WORKSPACE}/Build/${PROJECTNAME}-Build/Debug-iphonesimulator/${PROJECTNAME}.app"
+		xcrun simctl launch ${DEVICE} "com.bitheads.${BUNDLENAME}"
 		;;
 	-pack)
 		# to generate .ipa package for ios deployment
-		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}"  -sdk ${SDK}  -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" archive
+		xcodebuild -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "${PLATFORM}" DEVELOPMENT_TEAM=$TEAM_ID -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" archive
 		xcodebuild -exportArchive -archivePath "${WORKSPACE}/Build/${PROJECTNAME}.xcarchive" -exportPath "${WORKSPACE}/Build/${PROJECTNAME}-Export" -allowProvisioningUpdates -exportOptionsPlist "./ExportOptions.plist"
 		;;
 	-upload)

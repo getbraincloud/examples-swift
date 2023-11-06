@@ -5,3 +5,7 @@ xcschememanagement.plist
 Podfile.lock
 Build/
 .idea/
+**/xcuserdata/**
+**/BrainCloud.xcframework/**
+
+
