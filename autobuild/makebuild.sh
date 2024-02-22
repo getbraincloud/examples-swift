@@ -14,6 +14,13 @@
 # ../autobuild/makebuild.sh -upload  "Basic Example"
 #     output is: "${WORKSPACE}/Build/Basic Example-Export/Basic Example.ipa"
 
+# if your simulator gets stuck opening, you may have to open Simulator app, try this:
+# open -a Simulator
+
+# you can create a new device like this:
+# xcrun simctl list devicetypes
+# xcrun simctl create "myNewSimulator" com.apple.CoreSimulator.SimDeviceType.iPhone-15
+
 if [ -z "${WORKSPACE}" ];
 then
 echo 'Please set workspace environment.'
@@ -51,9 +58,9 @@ case "$1" in
  	-run)
 		# eg. to run in simulator
 		xcodebuild build -workspace "${PROJECTNAME}.xcworkspace" -scheme "${SCHEME}" -destination "id=${DEVICE}" -configuration $BUILD_CONFIG SYMROOT="${WORKSPACE}/Build/${PROJECTNAME}-Build"
-		#xcrun simctl shutdown ${DEVICE}
-		#xcrun simctl erase ${DEVICE}
-		xcrun simctl boot ${DEVICE}
+#		xcrun simctl shutdown ${DEVICE}
+#		xcrun simctl erase ${DEVICE}
+#		xcrun simctl boot ${DEVICE}
 		xcrun simctl install ${DEVICE} "${WORKSPACE}/Build/${PROJECTNAME}-Build/Debug-iphonesimulator/${PROJECTNAME}.app"
 		xcrun simctl launch ${DEVICE} "com.bitheads.${BUNDLENAME}"
 		;;
@@ -65,7 +72,8 @@ case "$1" in
 	-upload)
 		if [ -z "$BRAINCLOUD_TOOLS" ];
 		then
-  			export BRAINCLOUD_TOOLS=~/braincloud-client-master
+		    echo "Error: BRAINCLOUD_TOOLS path not set"
+    		exit 1
 		fi
 
 		if ! [ -d "${BRAINCLOUD_TOOLS}/bin" ];
