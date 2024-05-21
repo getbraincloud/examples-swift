@@ -175,17 +175,11 @@ class MainScene: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             pushNotificationMenu.isHidden = false;
             relayMenu.isHidden = true;
         } else if(sender.selectedSegmentIndex == 2) {
-            AppDelegate._bc.playerStateService.logout(
-                nil,
+            AppDelegate._bc.logout(
+                AppDelegate.forgetUser,
+                withCompletionBlock: nil,
                 errorCompletionBlock: nil,
                 cbObject: nil)
-            
-            AppDelegate._bc.getBCClient()
-                .authenticationService.clearSavedProfile()
-            AppDelegate._bc.storedAnonymousId = ""
-            AppDelegate._bc.storedProfileId = ""
-            
-            UserDefaults.standard.set(false, forKey: "HasAuthenticated")
             
             self.performSegue(withIdentifier: "onLogout", sender: nil)
         } else if (sender.selectedSegmentIndex == 3) {
@@ -222,7 +216,7 @@ class MainScene: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     
     @IBAction func onSendPushNotificationsClicked(_ sender: Any) {
         AppDelegate._bc.pushNotificationService.sendSimplePushNotification(
-            AppDelegate._bc.storedProfileId,
+            AppDelegate._bc.getBCClient()?.authenticationService.profileID,
             message: "Message_" + String(describing: arc4random_uniform(2000)),
             completionBlock: onPushNotificationSuccess,
             errorCompletionBlock: nil,

@@ -17,12 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var window: UIWindow?
     static var _bc: BrainCloudWrapper = BrainCloudWrapper();
-    
+    static var forgetUser: Bool = false;
     static var pushToken: String?;
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        UserDefaults.standard.register(defaults: ["HasAuthenticated" : true])
         
         /*
          BRAINCLOUD_INFO
@@ -128,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        
+        AppDelegate._bc.logout(false, withCompletionBlock: nil, errorCompletionBlock: nil, cbObject: nil);
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {

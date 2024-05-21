@@ -18,7 +18,7 @@ class LoginScene: UIViewController {
             UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         // If user has already authenticated, so let's reconnect
-        if(UserDefaults.standard.bool(forKey: "HasAuthenticated")) {
+        if(AppDelegate._bc.canReconnect()) {
             reconnectBtn.isEnabled = true
             
             profileId.text = AppDelegate._bc.storedProfileId;
@@ -26,7 +26,7 @@ class LoginScene: UIViewController {
         } else {
             reconnectBtn.isEnabled = false
         }
-        
+        AppDelegate.forgetUser = bForgetUser.isOn;
     }
     
     @IBOutlet weak var loginView: UIStackView!
@@ -48,6 +48,12 @@ class LoginScene: UIViewController {
     
     @IBOutlet weak var lEmail: UITextField!
     @IBOutlet weak var lPassword: UITextField!
+    
+    @IBOutlet weak var bForgetUser: UISwitch!
+    
+    @IBAction func onValueChanged(_ sender: UISwitch) {
+        AppDelegate.forgetUser = bForgetUser.isOn;
+    }
     
     @IBOutlet weak var lLoginError: UILabel!
     
@@ -130,8 +136,6 @@ class LoginScene: UIViewController {
         }
         
         
-        UserDefaults.standard.set(true, forKey: "HasAuthenticated")
-        
         self.performSegue(withIdentifier: "onLogin", sender: nil)
         
     }
@@ -153,8 +157,6 @@ class LoginScene: UIViewController {
             
             self.lLoginError.text = "\n\(serviceOperation!) Error \(reasonCode!)"
         }
-        
-        UserDefaults.standard.set(false, forKey: "HasAuthenticated")
     }
     
     
@@ -232,17 +234,13 @@ class LoginScene: UIViewController {
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)
                 
-                
-                
-                UserDefaults.standard.set(true, forKey: "HasAuthenticated")
-                
                 self.performSegue(withIdentifier: "onLogin", sender: nil)
                 
             } else {
                 /*
                  If they aren't a new user, we are going to logout, and throw an error that they need to login instead
                  */
-                AppDelegate._bc.playerStateService.logout(nil, errorCompletionBlock: nil, cbObject: nil);
+                AppDelegate._bc.logout(true, withCompletionBlock: nil, errorCompletionBlock: nil, cbObject: nil);
                 
                 rRegisterError.text = "User already exists, please login instead.";
             }
@@ -256,15 +254,12 @@ class LoginScene: UIViewController {
     func onRegisterFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
         print("Failure \(String(describing: serviceName))")
         
-        UserDefaults.standard.set(false, forKey: "HasAuthenticated")
-        
         self.rRegisterError.text = "Could not register. If user already exists, please login instead.";
     }
     
     
     @IBAction func onAnonymousLoginClicked(_ sender: Any) {
-        AppDelegate._bc.storedAnonymousId = "";
-        AppDelegate._bc.storedProfileId = "";
+        AppDelegate._bc.clearIds();
         
         AppDelegate._bc.authenticateAnonymous(onAuthenticate,
                                               errorCompletionBlock: onAuthenticateFailed,
