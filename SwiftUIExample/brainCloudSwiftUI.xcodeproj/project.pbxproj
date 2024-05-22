@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,9 +12,6 @@
 		80C4E76626D87A54000E0B71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E76526D87A54000E0B71 /* ContentView.swift */; };
 		80C4E76826D87A55000E0B71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C4E76726D87A55000E0B71 /* Assets.xcassets */; };
 		80C4E76B26D87A55000E0B71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C4E76A26D87A55000E0B71 /* Preview Assets.xcassets */; };
-		80C4E77626D87B47000E0B71 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E77426D87B46000E0B71 /* DetailView.swift */; };
-		80C4E77726D87B47000E0B71 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E77526D87B46000E0B71 /* WebView.swift */; };
-		80C4E77B26D87B76000E0B71 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4E77926D87B76000E0B71 /* PostData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +22,6 @@
 		80C4E76726D87A55000E0B71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80C4E76A26D87A55000E0B71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80C4E76C26D87A55000E0B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80C4E77426D87B46000E0B71 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		80C4E77526D87B46000E0B71 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		80C4E77926D87B76000E0B71 /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		A8F618DD106313A81A152F41 /* Pods_brainCloudSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_brainCloudSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C1C8B83E7B2368FBAAA723 /* Pods-brainCloudSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-brainCloudSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-brainCloudSwiftUI/Pods-brainCloudSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,7 +70,6 @@
 				80C4E76326D87A54000E0B71 /* brainCloudSwiftUIApp.swift */,
 				80C4E77226D87A60000E0B71 /* Views */,
 				80C4E76726D87A55000E0B71 /* Assets.xcassets */,
-				80C4E77326D87A9B000E0B71 /* Moudles */,
 				80C4E76C26D87A55000E0B71 /* Info.plist */,
 				80C4E76926D87A55000E0B71 /* Preview Content */,
 			);
@@ -95,18 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				80C4E76526D87A54000E0B71 /* ContentView.swift */,
-				80C4E77426D87B46000E0B71 /* DetailView.swift */,
-				80C4E77526D87B46000E0B71 /* WebView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		80C4E77326D87A9B000E0B71 /* Moudles */ = {
-			isa = PBXGroup;
-			children = (
-				80C4E77926D87B76000E0B71 /* PostData.swift */,
-			);
-			path = Moudles;
 			sourceTree = "<group>";
 		};
 		C1B5EE37E7731D6007ADC31C /* Pods */ = {
@@ -232,9 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				80C4E76626D87A54000E0B71 /* ContentView.swift in Sources */,
-				80C4E77B26D87B76000E0B71 /* PostData.swift in Sources */,
-				80C4E77726D87B47000E0B71 /* WebView.swift in Sources */,
-				80C4E77626D87B47000E0B71 /* DetailView.swift in Sources */,
 				80C4E76426D87A54000E0B71 /* brainCloudSwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
