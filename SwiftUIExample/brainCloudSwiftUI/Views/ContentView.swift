@@ -9,80 +9,84 @@ import SwiftUI
 import BrainCloud
 
 struct ContentView: View {
-    @ObservedObject var moudle = OperationMoudle()
-    @State var serviceOperationName = "operation"
-    @State var jsonDataReturn = "response"
+    @State var serviceOperationName = ""
+    @State var jsonDataReturn = ""
+    @EnvironmentObject var settings: GameSettings
     
     var body: some View {
-        let _bc: BrainCloudWrapper = BrainCloudWrapper()
+
         VStack {
             Image("textLogo")
-            NavigationView{
-                List(moudle.bcOperations){ item in
-                    NavigationLink(
-                        destination: DetailView(url: item.url),
-                        label: {
-                            /*@START_MENU_TOKEN@*/HStack {
-                                Text(item.id)
-                                Text(item.operation)
-                            }/*@END_MENU_TOKEN@*/
-                        }).simultaneousGesture(TapGesture().onEnded{
-                            switch item.id {
-                            case "1":
-                                // read YOUR_SECRET and YOUR_APPID from info.plist
-                                var config: [String: Any]?
-                                        
-                                if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
-                                    do {
-                                        let infoPlistData = try Data(contentsOf: infoPlistPath)
-                                        
-                                        if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
-                                            config = dict
-                                        }
-                                    } catch {
-                                        print(error)
-                                    }
-                                }
-                                _bc.initialize(config?["BCServerUrl"] as? String,
-                                               secretKey: config?["BCSecretKey"] as? String,
-                                               appId: config?["BCAppId"] as? String,
-                                               appVersion: "2.0.0",
-                                               companyName: "brainCloud",
-                                               appName: "TestJ")
-                            case "2":
-                                _bc.authenticateAnonymous(onAuthenticate, errorCompletionBlock: onAuthenticateFailed, cbObject: nil)
-                            case "3":
-                                _bc.playerStateService.logout(onAuthenticate, errorCompletionBlock: onAuthenticateFailed, cbObject: nil)
-                            default:
-                                print("No operation selected!")
-                            }
-                            
-                        })
+            Spacer()
+            Button("1 Initialize") {
+                // read YOUR_SECRET and YOUR_APPID from info.plist
+                var config: [String: Any]?
+                
+                if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
+                    do {
+                        let infoPlistData = try Data(contentsOf: infoPlistPath)
+                        
+                        if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
+                            config = dict
+                        }
+                    } catch {
+                        print(error)
+                    }
                 }
-                .navigationTitle("Menu")
+                    
+                settings._bcWrapper?.initialize(config?["BCServerUrl"] as? String,
+                               secretKey: config?["BCSecretKey"] as? String,
+                               appId: config?["BCAppId"] as? String,
+                               appVersion: "2.0.0",
+                               companyName: "brainCloud",
+                               appName: "TestJ")
+                settings._bcWrapper?.getBCClient().enableLogging(true)
+
+                serviceOperationName = "INITIALIZE"
+                jsonDataReturn = "App ID: " + (config?["BCAppId"] as! String)
             }
-            .onAppear(perform: {
-                DispatchQueue.main.async {
-                    _bc.getBCClient().enableLogging(true)
-                }
-            })
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.accentColor)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            
+            Button("2 AuthenticateAnonymous"){
+                settings._bcWrapper?.authenticateAnonymous(onServiceCallback, errorCompletionBlock: onServiceCallbackFailed, cbObject: nil, forceCreate: true)
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.accentColor)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            
+            Button("3 Logout"){
+                settings._bcWrapper?.logout(true, withCompletionBlock: onServiceCallback, errorCompletionBlock: onServiceCallbackFailed, cbObject: nil)
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.accentColor)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            
             ScrollView {
                 VStack {
-                    TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: $serviceOperationName)
-                    TextEditor(text: $jsonDataReturn)
+                    Text(serviceOperationName)
+                    TextEditor(text: $jsonDataReturn) // TextEditor allows copy contents
                 }
             }
         }
     }
+        
     
     
-    func onAuthenticate(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
+    func onServiceCallback(serviceName:String?, serviceOperation:String?, jsonData:String?, cbObject: NSObject?) {
         print("\(serviceOperation!) Success \(jsonData!)")
         serviceOperationName = serviceOperation ?? "no operation executed"
         jsonDataReturn = jsonData ?? "success with response returned"
     }
     
-    func onAuthenticateFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
+    func onServiceCallbackFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
         print("\(serviceOperation!) Failure \(jsonError!)")
         serviceOperationName = serviceOperation ?? "no operation executed"
         jsonDataReturn = jsonError ?? "fail with error returned"
