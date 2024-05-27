@@ -37,7 +37,7 @@ struct ContentView: View {
                 settings._bcWrapper?.initialize(config?["BCServerUrl"] as? String,
                                secretKey: config?["BCSecretKey"] as? String,
                                appId: config?["BCAppId"] as? String,
-                               appVersion: "2.0.0",
+                               appVersion: config?["CFBundleShortVersionString"] as? String,
                                companyName: "brainCloud",
                                appName: "TestJ")
                 settings._bcWrapper?.getBCClient().enableLogging(true)
