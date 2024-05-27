@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate._bc.initialize(Bundle.main.infoDictionary?["serverUrl"] as? String,
                                    secretKey: Bundle.main.infoDictionary?["secretKey"] as? String,
                                    appId: Bundle.main.infoDictionary?["appId"] as? String,
-                                   appVersion: Bundle.main.infoDictionary?["appVersion"] as? String,
+                                   appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
                                    companyName: Bundle.main.infoDictionary?["companyName"] as? String,
                                    appName: Bundle.main.infoDictionary?["appName"] as? String)
         
@@ -56,8 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }    
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        AppDelegate._bc.logout(false, withCompletionBlock: nil, errorCompletionBlock: nil, cbObject: nil);
     }
-
+    
 
 }
 

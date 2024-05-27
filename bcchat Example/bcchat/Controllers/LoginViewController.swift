@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email = emailTextfield.text, let password = passwordTextfield.text {
-            AppDelegate._bc.authenticateEmailPassword(email,
+            AppDelegate._bc.authenticateUniversal(email,
                                                   password: password,
                                                   forceCreate: false,
                                                   completionBlock: onAuthenticate,
@@ -41,11 +41,21 @@ class LoginViewController: UIViewController {
         self.reconnectButton.addTarget(self, action: #selector(self.reconnectButtonPressed), for: .touchUpInside)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        AppDelegate._bc.logout(false, withCompletionBlock: nil, errorCompletionBlock: nil, cbObject: nil)
+        self.reconnectButton.isEnabled = AppDelegate._bc.canReconnect()
+        if self.reconnectButton.isEnabled  {
+            self.reconnectButton.setTitleColor(UIColor(named: "BrandLightBlue"), for: .normal)
+        } else {
+            self.reconnectButton.setTitleColor(UIColor(_colorLiteralRed: 0.7, green: 0.7, blue: 0.7, alpha: 1.0), for: .normal)
+        }
+        self.loginErrorLabel.text = ""
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.reconnectButton.frame = CGRect(x: 0, y: 0, width: 250, height: 50)
         self.reconnectButton.setTitle("Reconnect", for: .normal)
-        self.reconnectButton.setTitleColor(UIColor(named: "BrandLightBlue"), for: .normal)
         self.reconnectButton.titleLabel?.font = .systemFont(ofSize: 30)
         self.reconnectButton.center = view.center
     }
@@ -75,7 +85,6 @@ class LoginViewController: UIViewController {
             print("Failed to load: \(error.localizedDescription)")
         }
         
-        UserDefaults.standard.set(true, forKey: "HasAuthenticated")
         self.performSegue(withIdentifier: "loginToChannel", sender: self)
     }
     
@@ -84,11 +93,12 @@ class LoginViewController: UIViewController {
         
         if(reasonCode == 40208) {
             self.loginErrorLabel.text = "Account does not exist. Please register instead."
-        } else {
+        } else if (reasonCode == 40307) {
+            self.loginErrorLabel.text = "Token mismatch. Try another password."
+        }
+        else {
             self.loginErrorLabel.text = "\n\(serviceOperation!) Error \(reasonCode!)"
             print("this is loginErrorLabel text: \(self.loginErrorLabel.text!)")
         }
-        
-        UserDefaults.standard.set(false, forKey: "HasAuthenticated")
     }
 }

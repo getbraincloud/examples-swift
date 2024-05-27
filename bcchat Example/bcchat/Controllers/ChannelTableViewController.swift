@@ -220,6 +220,12 @@ class ChannelTableViewController: UITableViewController, SwipeTableViewCellDeleg
     }
     
     
+    @IBAction func onLogoutClicked(_ sender: UIBarButtonItem) {
+        AppDelegate._bc.getBCClient().rttService.disableRTT()
+        AppDelegate._bc.logout(true, withCompletionBlock: nil, errorCompletionBlock: nil, cbObject: nil)
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         if isPurchased(){
             var textField = UITextField()

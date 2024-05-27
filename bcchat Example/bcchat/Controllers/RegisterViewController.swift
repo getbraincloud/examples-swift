@@ -71,14 +71,12 @@ class RegisterViewController: UIViewController {
             print("Failed to load: \(error.localizedDescription)")
         }
         
-        UserDefaults.standard.set(true, forKey: "HasAuthenticated")
         self.performSegue(withIdentifier: "registerToChannel", sender: self)
     }
     
     func onAuthenticateFailed(serviceName:String?, serviceOperation:String?, statusCode:Int?, reasonCode:Int?, jsonError:String?, cbObject: NSObject?) {
         print("\(serviceOperation!) Failure \(jsonError!)")
         self.loginErrorLabel.text = "\n\(serviceOperation!) Error \(reasonCode!)"
-        UserDefaults.standard.set(false, forKey: "HasAuthenticated")
     }
     
     //MARK: - apple signIn

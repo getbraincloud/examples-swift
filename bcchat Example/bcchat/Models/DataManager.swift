@@ -72,6 +72,6 @@ struct DataManager {
     }
     
     func isAuthenticated() -> Bool {
-        return UserDefaults.standard.bool(forKey: "HasAuthenticated")
+        return !(AppDelegate._bc.getBCClient().authenticationService.profileID.isEmpty)
     }
 }

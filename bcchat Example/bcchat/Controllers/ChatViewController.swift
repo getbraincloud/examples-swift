@@ -42,6 +42,7 @@ class ChatViewController: MessagesViewController {
     
     @objc func onLogoutClicked() {
         AppDelegate._bc.getBCClient().rttService.disableRTT()
+        AppDelegate._bc.logout(true, withCompletionBlock: nil, errorCompletionBlock: nil, cbObject: nil)
         navigationController?.popToRootViewController(animated: true)
     }
     
