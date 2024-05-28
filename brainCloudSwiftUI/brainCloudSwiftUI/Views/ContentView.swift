@@ -16,34 +16,21 @@ struct ContentView: View {
     var body: some View {
 
         VStack {
+
             Image("textLogo")
+            Text("SwiftUI App Version " + ((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!))
             Spacer()
             Button("1 Initialize") {
-                // read YOUR_SECRET and YOUR_APPID from info.plist
-                var config: [String: Any]?
-                
-                if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
-                    do {
-                        let infoPlistData = try Data(contentsOf: infoPlistPath)
-                        
-                        if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
-                            config = dict
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }
-                    
-                settings._bcWrapper?.initialize(config?["BCServerUrl"] as? String,
-                               secretKey: config?["BCSecretKey"] as? String,
-                               appId: config?["BCAppId"] as? String,
-                               appVersion: config?["CFBundleShortVersionString"] as? String,
+                settings._bcWrapper?.initialize(Bundle.main.infoDictionary?["BCServerUrl"] as? String,
+                               secretKey: Bundle.main.infoDictionary?["BCSecretKey"] as? String,
+                               appId: Bundle.main.infoDictionary?["BCAppId"] as? String,
+                               appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
                                companyName: "brainCloud",
                                appName: "TestJ")
                 settings._bcWrapper?.getBCClient().enableLogging(true)
 
                 serviceOperationName = "INITIALIZE"
-                jsonDataReturn = "App ID: " + (config?["BCAppId"] as! String)
+                jsonDataReturn = "App ID: " + (Bundle.main.infoDictionary?["BCAppId"] as! String)
             }
             .frame(maxWidth: .infinity)
             .padding()

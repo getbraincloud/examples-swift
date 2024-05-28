@@ -14,7 +14,8 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = ""
         var charIndex = 0.0
-        let titleText = "⚡️bcChat"
+        let titleText = "⚡️bcChat " + ((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!)
+        // todo
         for letter in titleText {
             //in order to schedule timers to start differently, we can deley the subsequecial timer by multiplying a charIndex
             Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { Timer in
@@ -22,10 +23,6 @@ class WelcomeViewController: UIViewController {
             }
             charIndex += 1
         }
-        if let secrectKey = Bundle.main.infoDictionary?["secretKey"] as? String {
-            print(secrectKey)
-        }
-
     }
     
 }

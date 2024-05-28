@@ -66,9 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         AppDelegate._bc.initialize(config?["BCServerUrl"] as? String,
                                    secretKey: config?["BCSecretKey"] as? String, // Replace the Secret and
                                    appId: config?["BCAppId"] as? String, // AppId with the one on the dashboard
-                                   appVersion: "1.0.0",
-                                   companyName: "brainCloud",
-                                   appName: "Basic - Swift")
+                                   appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+                                   companyName: "bitheads",
+                                   appName: "BasicExample")
         
         
 //        let center = UNUserNotificationCenter.current()
