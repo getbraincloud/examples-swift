@@ -7,5 +7,5 @@ Build/
 .idea/
 **/xcuserdata/**
 **/BrainCloud.xcframework/**
-
+**/artifacts/
 

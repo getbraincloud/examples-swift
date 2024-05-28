@@ -61,7 +61,7 @@
                       appId:@""
                  appVersion:@"1.0"
                 companyName:@"BitHeads"
-                    appName:@"HelloBC"];
+                    appName:@"BCLibDemo"];
     [[m_bcWrapper getBCClient] enableLogging:TRUE];
     
     if([m_bcWrapper getBCClient].isInitialized){
