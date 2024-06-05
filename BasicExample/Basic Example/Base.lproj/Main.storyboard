@@ -439,6 +439,7 @@
                     <connections>
                         <outlet property="anonId" destination="UC9-su-6RQ" id="h4Q-pn-735"/>
                         <outlet property="bForgetUser" destination="Zui-hk-JnP" id="lJc-BL-FZU"/>
+                        <outlet property="gamelabel" destination="SbJ-t4-3zJ" id="nHR-q1-w98"/>
                         <outlet property="lEmail" destination="PXO-Pp-lF5" id="9hR-K5-gaU"/>
                         <outlet property="lLoginError" destination="Zi0-ET-7dh" id="VsR-vZ-ul2"/>
                         <outlet property="lPassword" destination="7w3-Xs-aEi" id="mWu-Ai-KG6"/>
