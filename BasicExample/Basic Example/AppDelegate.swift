@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     static var _bc: BrainCloudWrapper = BrainCloudWrapper();
     static var forgetUser: Bool = false;
     static var pushToken: String?;
+    static var appVersion: String = "";
+    static var appId: String = "";
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -62,11 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print(error)
             }
         }
-
+        AppDelegate.appId = config?["BCAppId"] as? String ?? ""
+        AppDelegate.appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         AppDelegate._bc.initialize(config?["BCServerUrl"] as? String,
                                    secretKey: config?["BCSecretKey"] as? String, // Replace the Secret and
-                                   appId: config?["BCAppId"] as? String, // AppId with the one on the dashboard
-                                   appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+                                   appId: AppDelegate.appId, // AppId with the one on the dashboard
+                                   appVersion: AppDelegate.appVersion,
                                    companyName: "bitheads",
                                    appName: "BasicExample")
         

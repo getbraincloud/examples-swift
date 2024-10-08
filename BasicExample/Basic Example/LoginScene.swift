@@ -27,10 +27,13 @@ class LoginScene: UIViewController {
             reconnectBtn.isEnabled = false
         }
         AppDelegate.forgetUser = bForgetUser.isOn;
+        
+        gamelabel?.text = "brainCloud 5.4.0 ⚡️ Basic Example " + (AppDelegate.appVersion) + " (" + (AppDelegate.appId) + ")";
     }
     
     @IBOutlet weak var loginView: UIStackView!
     @IBOutlet weak var registerView: UIStackView!
+    @IBOutlet weak var gamelabel: UILabel?
     
     @IBAction func onMenuChanged(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 0) {
