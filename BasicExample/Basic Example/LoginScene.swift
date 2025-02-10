@@ -28,7 +28,7 @@ class LoginScene: UIViewController {
         }
         AppDelegate.forgetUser = bForgetUser.isOn;
         
-        gamelabel?.text = "brainCloud 5.4.0 ⚡️ Basic Example " + (AppDelegate.appVersion) + " (" + (AppDelegate.appId) + ")";
+        gamelabel?.text = "brainCloud 5.5.0 ⚡️ Basic Example " + (AppDelegate.appVersion) + " (" + (AppDelegate.appId) + ")";
     }
     
     @IBOutlet weak var loginView: UIStackView!
