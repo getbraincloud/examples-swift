@@ -129,7 +129,7 @@ class LoginScene: UIViewController {
             let isNewUser = data["newUser"] as! String;
             
             if(isNewUser.elementsEqual("true")) {
-                AppDelegate._bc.playerStateService.updateName(self.lEmail?.text,
+                AppDelegate._bc.playerStateService.updateUserName(self.lEmail?.text,
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)
@@ -232,7 +232,7 @@ class LoginScene: UIViewController {
             let isNewUser = data["newUser"] as! String;
             
             if(isNewUser.elementsEqual("true")) {
-                AppDelegate._bc.playerStateService.updateName(self.rName?.text,
+                AppDelegate._bc.playerStateService.updateUserName(self.rName?.text,
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)

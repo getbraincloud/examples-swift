@@ -62,7 +62,7 @@ class RegisterViewController: UIViewController {
             let isNewUser = data["newUser"] as! String;
             
             if(isNewUser.elementsEqual("true")) {
-                AppDelegate._bc.playerStateService.updateName(self.emailTextfield?.text,
+                AppDelegate._bc.playerStateService.updateUserName(self.emailTextfield?.text,
                                                               completionBlock: nil,
                                                               errorCompletionBlock: nil,
                                                               cbObject: nil)
