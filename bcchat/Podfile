@@ -1,5 +1,5 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# The brainCloud 6.0.0 pods require iOS 15.0 — target that or CocoaPods backtracks to 5.9.x.
+platform :ios, '15.0'
 
 target 'bcchat' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -7,7 +7,18 @@ target 'bcchat' do
 
   # Pods for bcchat
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
-  pod 'BrainCloud'
+
+  if ENV['PODSOURCE'].to_s.empty?
+    if ENV['PODVERSION'].to_s.empty?
+      pod 'BrainCloud'
+    else
+      pod 'BrainCloud', ENV['PODVERSION']
+    end
+  else
+    pod 'BrainCloud', :path => ENV['PODSOURCE']
+    pod 'BrainCloudCpp', :path => ENV['CPPSOURCE']
+    pod 'BrainCloudJsonCpp', :path => ENV['JSONSOURCE']
+  end
 end
 
 
@@ -15,7 +26,7 @@ post_install do |installer|
     installer.generated_projects.each do |project|
           project.targets.each do |target|
               target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
                end
           end
    end
@@ -26,9 +37,18 @@ post_install do |installer|
    header = "#{installer.sandbox.root}/BrainCloudCpp/include/braincloud/internal/DefaultBrainCloudComms.h"
    if File.exist?(header)
      content = File.read(header)
-     content = content.gsub('#include <braincloud/ServiceName.h>', '#include "braincloud/ServiceName.h"')
-     content = content.gsub('#include <braincloud/ServiceOperation.h>', '#include "braincloud/ServiceOperation.h"')
-     File.write(header, content)
-     puts "Patched DefaultBrainCloudComms.h: angle-bracket includes → quoted includes"
+     patched = content
+       .gsub('#include <braincloud/ServiceName.h>', '#include "braincloud/ServiceName.h"')
+       .gsub('#include <braincloud/ServiceOperation.h>', '#include "braincloud/ServiceOperation.h"')
+     if patched != content
+       begin
+         # Published pods download read-only (mode 0444); make the header writable first.
+         File.chmod(0644, header)
+         File.write(header, patched)
+         puts "Patched DefaultBrainCloudComms.h: angle-bracket includes → quoted includes"
+       rescue => e
+         puts "WARNING: could not patch DefaultBrainCloudComms.h (#{e.message}); continuing."
+       end
+     end
    end
 end

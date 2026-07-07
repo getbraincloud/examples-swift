@@ -1,18 +1,25 @@
-# Uncomment the next line to define a global platform for your project
- platform :ios, '12.0'
+# The brainCloud 6.0.0 pods require iOS 15.0 — target that or CocoaPods backtracks to 5.9.x.
+ platform :ios, '15.0'
 
 target 'Basic Example' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  if ENV['PODSOURCE'] == "" then
-        pod 'BrainCloud'
-        pod 'BrainCloudCpp'
-        pod 'BrainCloudJsonCpp'
+  # brainCloud SDK pods — driven by bccm `syncsdk` env vars:
+  #   PODSOURCE/CPPSOURCE/JSONSOURCE set -> local dev SDK via :path   (-e internal)
+  #   PODVERSION set                      -> pinned published version  (-v <tag>)
+  #   all empty/unset                     -> latest published trunk    (-e prod)
+  # (.to_s.empty? treats an UNSET var as empty too — a plain `pod install` = published.)
+  if ENV['PODSOURCE'].to_s.empty?
+    if ENV['PODVERSION'].to_s.empty?
+      pod 'BrainCloud'
     else
-        pod 'BrainCloud', :path => ENV['PODSOURCE'] 
-        pod 'BrainCloudCpp', :path => ENV['CPPSOURCE'] 
-        pod 'BrainCloudJsonCpp', :path => ENV['JSONSOURCE'] 
+      pod 'BrainCloud', ENV['PODVERSION']
+    end
+  else
+    pod 'BrainCloud', :path => ENV['PODSOURCE']
+    pod 'BrainCloudCpp', :path => ENV['CPPSOURCE']
+    pod 'BrainCloudJsonCpp', :path => ENV['JSONSOURCE']
   end
 
 

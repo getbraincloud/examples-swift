@@ -1,19 +1,28 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '11.0'
+# The brainCloud 6.0.0 pods require iOS 15.0 — target that or CocoaPods backtracks to 5.9.x.
+platform :ios, '15.0'
 
 target 'brainCloudSwiftUI' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for brainCloudSwiftUI
-  pod 'BrainCloud'
+  if ENV['PODSOURCE'].to_s.empty?
+    if ENV['PODVERSION'].to_s.empty?
+      pod 'BrainCloud'
+    else
+      pod 'BrainCloud', ENV['PODVERSION']
+    end
+  else
+    pod 'BrainCloud', :path => ENV['PODSOURCE']
+    pod 'BrainCloudCpp', :path => ENV['CPPSOURCE']
+    pod 'BrainCloudJsonCpp', :path => ENV['JSONSOURCE']
+  end
 end
 
 post_install do |installer|
     installer.generated_projects.each do |project|
           project.targets.each do |target|
               target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
                end
           end
    end
