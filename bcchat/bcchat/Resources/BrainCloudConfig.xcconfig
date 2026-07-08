@@ -10,6 +10,6 @@
 serverUrl = https:/$()/api.braincloudservers.com/dispatcherV2
 secretKey =
 appId =
-appVersion = 1.0.0
-companyName = companyName
-appName = appName
+appVersion = 1.0
+companyName = bitHeads
+appName = bcchat
