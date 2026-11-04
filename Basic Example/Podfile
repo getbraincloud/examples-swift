@@ -1,4 +1,4 @@
-# The brainCloud 6.0.0 pods require iOS 15.0 — target that or CocoaPods backtracks to 5.9.x.
+# The brainCloud 6.1.0+ pods require iOS 15.0 — target that or CocoaPods backtracks to 5.9.x.
  platform :ios, '15.0'
 
 target 'Basic Example' do
